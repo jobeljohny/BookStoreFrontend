@@ -11,6 +11,8 @@ import { SearchBarComponent } from './general/components/search-bar/search-bar.c
 import { HomeComponent } from './homepage/home/home.component';
 import { HeroblockComponent } from './homepage/heroblock/heroblock.component';
 import { BookcardComponent } from './cardcontainer/bookcard/bookcard.component';
+import { CategoriesComponent } from './menus/categories/categories.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { BookcardComponent } from './cardcontainer/bookcard/bookcard.component';
     SearchBarComponent,
     HomeComponent,
     HeroblockComponent,
-    BookcardComponent
+    BookcardComponent,
+    CategoriesComponent
+  
   ],
   imports: [
     BrowserModule,
