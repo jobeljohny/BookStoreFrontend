@@ -22,4 +22,10 @@ export class BookService {
       })
       .pipe(map((response) => response.filter((res) => res.Status)));
   }
+
+  getBookDetails(id: string)
+  {
+    console.log(this.baseurl + 'books/' + id);
+    return this.http.get<Book>(this.baseurl + 'books/' + id);
+  }
 }
