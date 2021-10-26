@@ -1,82 +1,130 @@
 <section class="mt-5">
+  <div class="row p p-5">
+    <div class="col-md-6 mb-4 mb-md-0 px-5" id="bookDetailImage">
+      <img
+        src="https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg"
+        alt="book-image"
+        width="100%"
+        height="520px"
+        style="object-fit: scale-down"
+      />
+    </div>
+    <div class="col-md-6 p-3">
+      <h5>{{ book?.Title }}</h5>
+      <p class="mb-2 text-muted text-uppercase small">{{ book?.Author }}</p>
 
-	<div class="row p p-5">
-		<div class="col-md-6 mb-4 mb-md-0 px-5" id="bookDetailImage">
-			<img src="https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg" alt="book-image" width="100%" height="520px"
-			style="object-fit: scale-down;" >
-		</div>
-		<div class="col-md-6 p-3">
-			<h5>Book Name</h5>
-			<p class="mb-2 text-muted text-uppercase small">Author Name</p>
+      <p>
+        <span class="mr-1"
+          ><strong>₹{{ book?.Price }}</strong></span
+        >
+      </p>
+      <p>
+        <span class="mr-1"><strong>Description</strong></span>
+      </p>
+      <p class="pt-1">
+        {{ book?.Description }}
+      </p>
+      <div class="table-responsive">
+        <table class="table table-sm table-borderless mb-0">
+          <tbody>
+            <tr>
+              <th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
+              <td>{{ book?.Category }}</td>
+            </tr>
 
-			<p><span class="mr-1"><strong>$12.99</strong></span></p>
-			<p><span class="mr-1"><strong>Description</strong></span></p>
-			<p class="pt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit
-				error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio,
-				officia quis dolore quos sapiente tempore alias.</p>
-			<div class="table-responsive">
-				<table class="table table-sm table-borderless mb-0">
-					<tbody>
-						<tr>
-							<th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
-							<td>Fiction</td>
-						</tr>
-						<tr>
-							<th class="pl-0 w-25" scope="row"><strong>Year</strong></th>
-							<td>2010</td>
-						</tr>
-						<tr>
-							<th class="pl-0 w-25" scope="row"><strong>ISBN</strong></th>
-							<td>978-0-09-954748-2</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<hr>
-			<div class="table-responsive mb-2">
-				<table class="table table-sm table-borderless">
-					<tbody>
-						<tr>
-							<td class="pl-0 pb-0 w-25">Quantity</td>
-
-						</tr>
-						<tr>
-							<td class="pl-0">
-								<div class="col-lg-2">
-									<div class="input-group">
-										<button type="button" class="quantity-left-minus btn btn-danger btn-number">-</button>
-										<input type="text" id="quantity" name="quantity" class="form-control input-number" maxlength="2" value=1 min="1" max="99">
-										<button type="button" class="quantity-right-plus btn btn-success btn-number">+</button>
-									</div>
-								</div>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<button type="button" class="btn btn-primary btn-md mx-1 mb-2">Buy now</button>
-			<button type="button" class="btn btn-warning btn-md mx-1 mb-2 text-white"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-			<button type="button" class="btn btn-danger btn-md mr-1 mb-2"><i class="fa fa-heart "></i> Add to wishlist</button>
-			<div class="container border border-danger" id="panelAdmin">
-				<p class="fw-bold">Admin Use</p>
-				<div class="row">
-					<div class="col-6">
-						<p><strong>BookId    : </strong>101</p>
-						<p><strong>Quantity  : </strong>20</p>
-					</div>
-					<div class="col-6">
-						<p><strong>Position  : </strong>10</p>
-			  		<p><strong>Status    : </strong>True</p>
-					</div>
-					<div class="col-12">
-						<button type="button" class="btn btn-warning btn-md mx-1 mb-2 text-white">Edit</button>
-						<button type="button" class="btn btn-danger btn-md mr-1 mb-2">Delete</button>
-					</div>
-				</div>
-
-			</div>
-		</div>
-		
-	</div>
-
+            <tr>
+              <th class="pl-0 w-25" scope="row"><strong>Year</strong></th>
+              <td>{{ book?.Year }}</td>
+            </tr>
+            <tr>
+              <th class="pl-0 w-25" scope="row"><strong>ISBN</strong></th>
+              <td>{{ book?.ISBN }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr />
+      <div class="table-responsive mb-2">
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <tr>
+              <td class="pl-0 pb-0 w-25">
+                Available Quantity : {{ book?.Qty }}
+              </td>
+            </tr>
+            <tr>
+              <td class="pl-0">
+                <div class="col-lg-2">
+                  <div class="input-group">
+                    <button
+                      type="button"
+                      class="quantity-left-minus btn btn-danger btn-number"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      id="quantity"
+                      name="quantity"
+                      class="form-control input-number"
+                      maxlength="2"
+                      value="1"
+                      min="1"
+                      max="99"
+                    />
+                    <button
+                      type="button"
+                      class="quantity-right-plus btn btn-success btn-number"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button type="button" class="btn btn-primary btn-md mx-1 mb-2">
+        Buy now
+      </button>
+      <button type="button" class="btn btn-warning btn-md mx-1 mb-2 text-white">
+        <i class="fa fa-shopping-cart pr-2"></i> Add to cart
+      </button>
+      <button type="button" class="btn btn-danger btn-md mr-1 mb-2">
+        <i class="fa fa-heart"></i> Add to wishlist
+      </button>
+      <div
+        *ngIf="
+          accountService.isLoggedIn() &&
+          accountService.getCurrentUser()?.role === 'Admin'
+        "
+        class="container border border-danger"
+        id="panelAdmin"
+      >
+        <p class="fw-bold">Admin Use</p>
+        <div class="row">
+          <div class="col-6">
+            <p><strong>BookId : </strong>101</p>
+            <p><strong>Quantity : </strong>20</p>
+          </div>
+          <div class="col-6">
+            <p><strong>Position : </strong>10</p>
+            <p><strong>Status : </strong>True</p>
+          </div>
+          <div class="col-12">
+            <button
+              type="button"
+              class="btn btn-warning btn-md mx-1 mb-2 text-white"
+            >
+              Edit
+            </button>
+            <button type="button" class="btn btn-danger btn-md mr-1 mb-2">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-

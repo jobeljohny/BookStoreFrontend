@@ -1,54 +1,117 @@
- <!-- navbar -->
- <nav class = "navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
-	<div class = "container">
-			<a class = "navbar-brand d-flex justify-content-between align-items-center order-lg-0" href = "#home">
-				<i class = "fa fa-book"></i>
-					<span class = "text-uppercase fw-lighter ms-2">Just Read</span>
-			</a>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+  <div class="container">
+    <a
+      class="
+        navbar-brand
+        d-flex
+        justify-content-between
+        align-items-center
+        order-lg-0
+      "
+      href="/"
+    >
+      <i class="fa fa-book"></i>
+      <span class="text-uppercase fw-lighter ms-2">Just Read</span>
+    </a>
 
-			<div class = "order-lg-2 nav-btns">
-					<button type = "button" class = "btn position-relative">
-							<i class = "fa fa-shopping-cart"></i>
-							
-					</button>
-					<button type = "button" class = "btn position-relative">
-							<i class = "fa fa-heart"></i>
-						
-					</button>
-					<button type = "button" class = "btn position-relative">
-							<i class = "fa fa-search"></i>
-					</button>
-			</div>
+    <div class="order-lg-2 nav-btns">
+      <button type="button" class="btn position-relative">
+        <i class="fa fa-shopping-cart"></i>
+      </button>
+      <button type="button" class="btn position-relative">
+        <i class="fa fa-heart"></i>
+      </button>
+      <button type="button" class="btn position-relative">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
 
-			<button class = "navbar-toggler border-0" type = "button" data-bs-toggle = "collapse" data-bs-target = "#navMenu">
-					<span class = "navbar-toggler-icon"></span>
-			</button>
+    <button
+      class="navbar-toggler border-0"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-			<div class = "collapse navbar-collapse order-lg-1" id = "navMenu">
-					<ul class = "navbar-nav mx-auto text-center">
-							<li class = "nav-item px-2 py-2 border-0">
-									<a class = "nav-link text-uppercase text-dark"routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-current="page" routerLink="/">home</a>
-							</li>
-							<li class = "nav-item px-2 py-2 border-0">
-									<a class = "nav-link text-uppercase text-dark" routerLinkActive="active" routerLink="/books">Books</a>
-							</li>
-							<li class = "nav-item px-2 py-2 border-0">
-									<a class = "nav-link text-uppercase text-dark" routerLinkActive="active" routerLink="/categories">categories</a>
-							</li>
-							<li class = "nav-item px-2 py-2 border-0">
-									<a class = "nav-link text-uppercase text-dark" routerLinkActive="active" routerLink="/carts">carts</a>
-							</li>
-							<li class = "nav-item px-2 py-2 border-0">
-									<a class = "nav-link text-uppercase text-dark" routerLinkActive="active" routerLink="/about">About US</a>
-							</li>
-							<li class = "nav-item px-2 py-2 border-0">
-									<a class = "nav-link text-uppercase text-dark" routerLinkActive="active" routerLink="/contact">Contact</a>
-							</li>
-							<li class = "nav-item px-2 py-2 border-0">
-								<a class = "nav-link text-uppercase text-dark" routerLinkActive="active" routerLink="/login">signin/signup</a>
-						</li>
-					</ul>
-			</div>
-	</div>
+    <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+      <ul class="navbar-nav mx-auto text-center">
+        <li class="nav-item px-2 py-2 border-0">
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="page"
+            routerLink="/"
+            >home</a
+          >
+        </li>
+        <li class="nav-item px-2 py-2 border-0">
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            routerLink="/books"
+            >Books</a
+          >
+        </li>
+        <li class="nav-item px-2 py-2 border-0">
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            routerLink="/categories"
+            >categories</a
+          >
+        </li>
+        <li class="nav-item px-2 py-2 border-0">
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            routerLink="/carts"
+            >carts</a
+          >
+        </li>
+        <li class="nav-item px-2 py-2 border-0">
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            routerLink="/about"
+            >About US</a
+          >
+        </li>
+        <li class="nav-item px-2 py-2 border-0">
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            routerLink="/contact"
+            >Contact</a
+          >
+        </li>
+        <li
+          *ngIf="!accountService.isLoggedIn(); else logoutLink"
+          class="nav-item px-2 py-2 border-0"
+        >
+          <a
+            class="nav-link text-uppercase text-dark"
+            routerLinkActive="active"
+            routerLink="/login"
+            >signin/signup</a
+          >
+        </li>
+        <ng-template #logoutLink>
+          <li class="nav-item px-2 py-2 border-0">
+            <a
+              class="nav-link text-uppercase text-dark"
+              routerLinkActive="active"
+              (click)="logout()"
+              routerLink="/"
+              >logout</a
+            >
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
 </nav>
 <!-- end of navbar -->

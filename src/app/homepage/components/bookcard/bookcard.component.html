@@ -1,17 +1,23 @@
 <!-- Single Product -->
 
 <div id="book-1" class="single-book">
-	<div class="part-1">
-		<ng-content></ng-content>
-		<ul>
-			<li><a routeLink="#"><i class="fa fa-shopping-cart"></i></a></li>
-			<li><a routeLink="#"><i class="fa fa-heart"></i></a></li>
-			<li><a routerLink="/books/1"><i class="fa fa-expand"></i></a></li>
-		</ul>
-	</div>
-	<div class="part-2 text-center">
-		<h4 class="book-title">Book Title</h4>
-		<p class="book-author">Author Name</p>
-		<h4 class="book-price">$49.99</h4>
-	</div>
+  <div class="part-1">
+    <ng-content></ng-content>
+    <ul>
+      <li>
+        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+      </li>
+      <li>
+        <a href="#" ><i class="fa fa-heart"></i></a>
+      </li>
+      <li>
+        <a [routerLink]="['/books', book.BookId]"><i class="fa fa-expand"></i></a>
+      </li>
+    </ul>
+  </div>
+  <div class="part-2 text-center">
+    <h4 class="book-title">{{ book.Title }}</h4>
+    <p class="book-author">{{ book.Author }}</p>
+    <h4 class="book-price">₹ {{ book.Price }}</h4>
+  </div>
 </div>

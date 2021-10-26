@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { LoginSignupComponent } from './auth/components/login-signup/login-signup.component';
 import { LoginContainerCardComponent } from './auth/components/login-container-card/login-container-card.component';
@@ -13,6 +15,7 @@ import { HeroblockComponent } from './homepage/components/heroblock/heroblock.co
 import { BookcardComponent } from './homepage/components/bookcard/bookcard.component';
 import { CategoriesComponent } from './menus/categories/categories.component';
 import { BooksDetailsComponent } from './menus/books/books-details/books-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { BooksDetailsComponent } from './menus/books/books-details/books-details
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
