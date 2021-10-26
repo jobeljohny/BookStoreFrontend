@@ -15,7 +15,6 @@ body {
 }
 
 //fancy span
-<<<<<<< HEAD
 .fancy {
   margin: 25px 0px 10px 0px;
   width: 90%;
@@ -42,15 +41,14 @@ body {
 .new {
   left: 0;
   background-color: #444444;
-=======
-.fancy{
-    margin:25px 0px 10px 0px ;
-     width: 90% ;
-      text-align: center ;
-      padding: 5px; 
-       color: rgb(87, 2, 167);
-       background-color: rgba(204, 60, 240, 0.096);
-       box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
-       font-family:"Helvetica";
->>>>>>> c9b52245e8e8daf2cb1bd5ccbf84109b4b7e2cf4
+  .fancy {
+    margin: 25px 0px 10px 0px;
+    width: 90%;
+    text-align: center;
+    padding: 5px;
+    color: rgb(87, 2, 167);
+    background-color: rgba(204, 60, 240, 0.096);
+    box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
+    font-family: "Helvetica";
+  }
 }

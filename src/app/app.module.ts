@@ -15,6 +15,7 @@ import { HeroblockComponent } from './homepage/components/heroblock/heroblock.co
 import { BookcardComponent } from './homepage/components/bookcard/bookcard.component';
 import { CategoriesComponent } from './menus/categories/categories.component';
 import { BooksDetailsComponent } from './menus/books/books-details/books-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
