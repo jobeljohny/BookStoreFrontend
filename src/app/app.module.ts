@@ -16,6 +16,7 @@ import { BookcardComponent } from './homepage/components/bookcard/bookcard.compo
 import { CategoriesComponent } from './menus/categories/categories.component';
 import { BooksDetailsComponent } from './menus/books/books-details/books-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WishlistComponent } from './menus/wishlist/wishlist.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeroblockComponent,
     BookcardComponent,
     CategoriesComponent,
-    BooksDetailsComponent
+    BooksDetailsComponent,
+    WishlistComponent
   
   ],
   imports: [
