@@ -1,7 +1,25 @@
-<form class="p-3">
-    <div style="text-align: center;">
-        <input id="search-bar" placeholder='Search...' style="margin-top: 5px;" >
-        <button class="btn btn-primary roundedButton" id="search-btn">Search</button>
-    </div>
+<form [formGroup]="searchForm" (ngSubmit)="OnSubmit()" class="p-3">
+  <li class="nav-item">
+    <select
+      class="select-box border-0 mb-1 px-4 py-2 rounded shadow"
+      style="width: 180px"
+      formControlName="field"
+    >
+      <option value="title">Name</option>
+      <option value="category">Category</option>
+      <option value="author">Authors</option>
+      <option value="isbn">ISBN</option>
+    </select>
+  </li>
+  <div style="text-align: center">
+    <input
+      formControlName="data"
+      id="search-bar"
+      placeholder="Search..."
+      style="margin-top: 5px"
+    />
+    <button class="btn btn-primary roundedButton" type="submit" id="search-btn">
+      Search
+    </button>
+  </div>
 </form>
-  

@@ -1,25 +1,44 @@
-body { /* Body offset for fixed navbar */
-	padding-top: 70px; 
+body {
+  /* Body offset for fixed navbar */
+  padding-top: 70px;
 }
- 
-.navbar .navbar-form { /* Positioning the form */
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-right: 0;
-    margin-left: 0;
-    border: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+
+.navbar .navbar-form {
+  /* Positioning the form */
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
- 
+
 //fancy span
-.fancy{
-    margin:25px 0px 10px 0px ;
-     width: 90% ;
-      text-align: center ;
-      padding: 5px; 
-       color: rgb(61, 61, 61);
-       background-color: rgba(204, 0, 255, 0.103);
-       box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
-       font-family:"Helvetica";
+.fancy {
+  margin: 25px 0px 10px 0px;
+  width: 90%;
+  text-align: center;
+  padding: 5px;
+  color: rgb(61, 61, 61);
+  background-color: rgba(204, 0, 255, 0.103);
+  box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
+  font-family: "Helvetica";
+}
+
+.featured,
+.new {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: #ffffff;
+  background-color: #fe302f;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.new {
+  left: 0;
+  background-color: #444444;
 }

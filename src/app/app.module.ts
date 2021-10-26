@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { LoginSignupComponent } from './auth/components/login-signup/login-signup.component';
 import { LoginContainerCardComponent } from './auth/components/login-container-card/login-container-card.component';
@@ -11,6 +13,8 @@ import { SearchBarComponent } from './general/components/search-bar/search-bar.c
 import { HomeComponent } from './homepage/home/home.component';
 import { HeroblockComponent } from './homepage/heroblock/heroblock.component';
 import { BookcardComponent } from './cardcontainer/bookcard/bookcard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -23,11 +27,14 @@ import { BookcardComponent } from './cardcontainer/bookcard/bookcard.component';
     SearchBarComponent,
     HomeComponent,
     HeroblockComponent,
-    BookcardComponent
+    BookcardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
