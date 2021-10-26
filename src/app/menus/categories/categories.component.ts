@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//changes
+//changes2
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
