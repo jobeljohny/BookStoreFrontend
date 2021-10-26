@@ -9,6 +9,8 @@ a:hover {
 
 .single-book {
     margin-bottom: 26px;
+    border: 2px solid black;
+    border-radius: 3px;
 }
 
 .single-book .part-1 {
@@ -37,7 +39,7 @@ a:hover {
  #book-1 .part-1::before {
     background: url("https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg") no-repeat center;
     background-size: cover;
-		transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 
@@ -80,6 +82,5 @@ a:hover {
 
  .single-book .part-2 .book-title {
     font-size: 1rem;
+    margin-top: 0;
 }
-
-
