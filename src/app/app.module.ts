@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './general/components/cart/cart.component';
 import { WishlistComponent } from './menus/wishlist/wishlist.component';
 import { BookcardListComponent } from './general/components/bookcard-list/bookcard-list.component';
+import { AddBooksComponent } from './admin/components/add-books/add-books.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { BookcardListComponent } from './general/components/bookcard-list/bookca
     CartComponent,
     WishlistComponent,
     BookcardListComponent,
+    AddBooksComponent,
   ],
   imports: [
     BrowserModule,

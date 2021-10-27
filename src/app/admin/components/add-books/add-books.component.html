@@ -1,0 +1,134 @@
+<div class="container">
+	<form [formGroup]="addBookForm">
+		<div class="row fw-bold">
+			<h3 class="text-center m-3">New Books Entry</h3>
+			<div class="col-12 col-md-6">
+				<div class="form-group mb-3">
+					<label for="bookTitle">Book Title</label>
+					<input type="text" id="bookTitle" class="form-control" formControlName="bookName"
+					[ngClass]="{'is-invalid':addBookForm.get('bookName')?.touched && addBookForm.get('bookName')?.invalid}">
+					<div class="invalid-feedback">
+						<div>Book Name is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="authorName">Author Name</label>
+					<input type="text" class="form-control" id="authorName" formControlName="bookAuthor"
+					[ngClass]="{'is-invalid':addBookForm.get('bookAuthor')?.touched && addBookForm.get('bookAuthor')?.invalid}">
+					<div class="invalid-feedback">
+						<div>Author Name is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="isbnNumber">ISBN Number</label>
+					<input type="text" class="form-control" id="isbnNumber" formControlName="isbnNumber"
+					[ngClass]="{'is-invalid':addBookForm.get('isbnNumber')?.touched && addBookForm.get('isbnNumber')?.invalid}">
+					<div class="invalid-feedback">
+						<div>ISBN Number is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="publishedYear">Published Year</label>
+					<input type="text" class="form-control" id="publishedYear"formControlName="publishedYear"
+					[ngClass]="{'is-invalid':addBookForm.get('publishedYear')?.touched && addBookForm.get('publishedYear')?.invalid}">
+					<div class="invalid-feedback">
+						<div>Year is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="bookPosition">Position</label>
+					<input type="text" class="form-control" id="bookPosition" formControlName="bookPosition"
+					[ngClass]="{'is-invalid':addBookForm.get('bookPosition')?.touched && addBookForm.get('bookPosition')?.invalid}">
+					<div class="invalid-feedback">
+						<div>Book Position is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="bookCategory">Category</label>
+					<select class="form-control" formControlName="bookCategory"
+					[ngClass]="{'is-invalid':addBookForm.get('bookCategory')?.touched && addBookForm.get('bookCategory')?.invalid}">
+						<option></option>
+					</select>
+					<div class="invalid-feedback">
+						<div>Book Category is required</div>
+					</div>
+				</div>
+	
+	
+				<div class="form-group mb-3">
+					<label for="bookStatus">Status</label>
+					<select id="bookStatus" class="form-control" formControlName="bookStatus"
+					[ngClass]="{'is-invalid':addBookForm.get('bookStatus')?.touched && addBookForm.get('bookStatus')?.invalid}">
+						<option hidden></option>
+						<option value="1">Active</option>
+						<option value="0">Inactive</option>
+					</select>
+					<div class="invalid-feedback">
+						<div>Status of book is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="bookPrice">Book Price</label>
+					<input type="number" class="form-control" id="bookPrice" formControlName="bookPrice"
+					[ngClass]="{'is-invalid':addBookForm.get('bookPrice')?.touched && addBookForm.get('bookPrice')?.invalid}">
+					<div class="invalid-feedback">
+						<div>Book Price is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="quantity">Book Quantity</label>
+					<input type="number" class="form-control" id="qunatity" formControlName="bookQuantity"
+					[ngClass]="{'is-invalid':addBookForm.get('bookQuantity')?.touched && addBookForm.get('bookQuantity')?.invalid}">
+					<div class="invalid-feedback">
+						<div>Book Quantity is required</div>
+					</div>
+				</div>
+	
+			</div>
+			<div class="col-12 col-md-6 ">
+				<div class="form-group mb-3">
+					<label for="isFeatured">Do you want to feature this book?</label>
+					<select id="isFeatured" class="form-control" formControlName="isBookFeatured"
+					[ngClass]="{'is-invalid':addBookForm.get('isBookFeatured')?.touched && addBookForm.get('isBookFeatured')?.invalid}">
+						<option hidden></option>
+						<option value="1">Yes, I want to feature this book</option>
+						<option value="0">No, I don't want to feature this book</option>
+					</select>
+					<div class="invalid-feedback">
+						<div>This field is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="bookDescribtion">Describtion</label>
+					<textarea class="form-control" id="bookDescribtion" rows="5" formControlName="bookDescribtion"
+					[ngClass]="{'is-invalid':addBookForm.get('bookDescribtion')?.touched && addBookForm.get('bookDescribtion')?.invalid}"></textarea>
+					<div class="invalid-feedback">
+						<div>This field is required</div>
+					</div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="bookCover">Book Cover Image</label>
+					<input type="file" class="form-control-file btn" id="bookCover">
+				</div>
+				<div id="uploadedImage">
+					<img
+						src="https://static.wikia.nocookie.net/just-because/images/0/0c/NoImage_Available.png/revision/latest/scale-to-width-down/280?cb=20170601005615"
+						alt="uploadingImage" width="300px" height="300px"
+						style="object-fit:cover scale-down; margin: 0 auto; display: block;">
+	
+				</div>
+	
+	
+			</div>
+		</div>
+	
+		<div style="display: block; margin: 0 auto;">
+		
+			<button class="btn btn-primary mt-5 px-5 py-2" style="display: block; margin: 0 auto;"
+			type="submit"  [disabled]="addBookForm.invalid">Submit</button>	
+		</div>
+	
+
+	</form>
+	
+</div>
