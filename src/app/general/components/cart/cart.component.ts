@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/']);
       },
       (error) => {
-        alert(error.error.message);
+        alert(error.error.Message);
       }
     );
   }

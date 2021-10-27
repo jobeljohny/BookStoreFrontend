@@ -30,7 +30,7 @@
             <app-search-bar (getBooks)="setBooks($event)"></app-search-bar>
           </li>
         </ul>
-        <hr />
+        
       </div>
     </div>
     <div class="col py-3">
@@ -39,7 +39,7 @@
           <app-bookcard [book]="book">
             <span *ngIf="book.Year === currentYear" class="new">new</span>
           </app-bookcard>
-        </div>
+        </div>      
       </div>
     </div>
   </div>

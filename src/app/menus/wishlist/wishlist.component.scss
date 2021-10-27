@@ -1,0 +1,28 @@
+
+
+.jumbotron{
+    margin-top: 100px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    background-color: blanchedalmond;
+    background: url('/assets/images/wishlist_cover.jpg')  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 85%;
+    
+}
+h1{
+    padding-top: 50px;
+    color: #fff;
+    font-size: 5em;
+}
+.jumbotron p{
+    color:#fff;
+    font-size:2em;
+}
+h6{
+    margin: 30px 0px;
+    font-size: 2em;
+   text-align: center   ;
+}

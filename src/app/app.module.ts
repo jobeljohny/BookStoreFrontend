@@ -17,6 +17,7 @@ import { CategoriesComponent } from './menus/categories/categories.component';
 import { BooksDetailsComponent } from './menus/books/books-details/books-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './general/components/cart/cart.component';
+import { WishlistComponent } from './menus/wishlist/wishlist.component';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import { CartComponent } from './general/components/cart/cart.component';
     CategoriesComponent,
     BooksDetailsComponent,
     CartComponent,
+    WishlistComponent
+  
   ],
   imports: [
     BrowserModule,
