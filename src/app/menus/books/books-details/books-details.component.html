@@ -112,13 +112,17 @@
         </button>
       </ng-template>
 
-      <!-- <button
-        *ngIf="accountService.isLoggedIn()"
+      <button
+        *ngIf="
+          accountService.isLoggedIn() &&
+          !wishListService.bookSet.has(book?.BookId)
+        "
         type="button"
         class="btn btn-danger btn-md mr-1 mb-2"
+        (click)="addToWishList()"
       >
         <i class="fa fa-heart"></i> Add to wishlist
-      </button> -->
+      </button>
       <div
         *ngIf="
           accountService.isLoggedIn() &&

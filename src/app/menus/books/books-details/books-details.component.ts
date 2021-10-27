@@ -8,6 +8,7 @@ import { Cart } from 'src/app/models/cart';
 import { AccountService } from 'src/app/services/account.service';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
+import { WishListService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-books-details',
@@ -25,7 +26,8 @@ export class BooksDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public accountService: AccountService,
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    public wishListService: WishListService
   ) {
     this.subscriber = this.route.params
       .pipe(
@@ -43,6 +45,11 @@ export class BooksDetailsComponent implements OnInit, OnDestroy {
           this.Qty.setValue(cart.BookList[idx].Qty);
         }
       });
+  }
+
+  addToWishList() {
+    if (this.book != null)
+      this.wishListService.addBook(this.book.BookId)?.subscribe();
   }
 
   addToCart() {

@@ -11,18 +11,11 @@ import { WishListService } from 'src/app/services/wishlist.service';
 export class BookcardListComponent implements OnInit {
   @Input() bookList!: Book[];
   currentYear: number = new Date().getFullYear();
-  wishSet = new Set();
 
   constructor(
     public accountService: AccountService,
-    private wishListService: WishListService
-  ) {
-    if (this.accountService.isLoggedIn()) {
-      this.wishListService.getWishList()?.subscribe((response) => {
-        response.forEach((book) => this.wishSet.add(book.BookId));
-      });
-    }
-  }
+    public wishListService: WishListService
+  ) {}
 
   toggle(data: { bookId: number; setWishListStatus: boolean }) {
     if (data.setWishListStatus)

@@ -25,7 +25,6 @@ export class BookService {
 
   getBookDetails(id: string)
   {
-    console.log(this.baseurl + 'books/' + id);
     return this.http.get<Book>(this.baseurl + 'books/' + id);
   }
 }

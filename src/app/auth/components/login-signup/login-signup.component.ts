@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { WishListService } from 'src/app/services/wishlist.service';
 
 declare var $: any;
 @Component({
@@ -21,7 +22,11 @@ export class LoginSignupComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private accountService: AccountService, private router: Router) {
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+    private wishListService: WishListService
+  ) {
     if (this.accountService.isLoggedIn()) this.router.navigate(['/']);
   }
 
@@ -30,6 +35,7 @@ export class LoginSignupComponent implements OnInit {
   register() {
     this.accountService.register(this.registerForm.value).subscribe(
       (response) => {
+        this.wishListService.getWishList();
         this.router.navigate(['/']);
       },
       (error) => {
@@ -41,6 +47,7 @@ export class LoginSignupComponent implements OnInit {
   login() {
     this.accountService.login(this.loginForm.value).subscribe(
       (response) => {
+        this.wishListService.getWishList();
         this.router.navigate(['/']);
       },
       (error) => {

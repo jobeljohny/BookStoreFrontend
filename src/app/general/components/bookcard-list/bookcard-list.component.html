@@ -2,9 +2,12 @@
   <div *ngFor="let book of bookList" class="col-md-6 col-lg-4 col-xl-3">
     <app-bookcard
       [isLoggedIn]="accountService.isLoggedIn()"
-      [isInWishList]="accountService.isLoggedIn() && wishSet.has(book.BookId)"
+      [isInWishList]="
+        accountService.isLoggedIn() && wishListService.bookSet.has(book.BookId)
+      "
       [book]="book"
-      (changeBookStatus)="toggle($event)"    >
+      (changeBookStatus)="toggle($event)"
+    >
       <span *ngIf="book.Year === currentYear" class="new">new</span>
     </app-bookcard>
   </div>
