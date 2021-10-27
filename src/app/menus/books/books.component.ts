@@ -8,7 +8,6 @@ declare var $: any;
 })
 export class BooksComponent implements OnInit, OnDestroy {
   books!: Book[];
-  currentYear: number = new Date().getFullYear();
 
   constructor() {}
 

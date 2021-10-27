@@ -1,9 +1,91 @@
-<div class="jumbotron jumbotron-fluid " >
-    <div class="container">
-      <h1 class="display-4">Your Wishlist</h1>
-      <p class="lead">Sleep Less, Read More!</p>
-    </div>
-  </div>
+<!-- <div class="jumbotron jumbotron-fluid">
   <div class="container">
-      <h6 class="display-4">Your books in wishlist</h6>
+    <h1 class="display-4">Your Wishlist</h1>
+    <p class="lead">Sleep Less, Read More!</p>
   </div>
+</div> -->
+<div class="container">
+  <section
+    *ngIf="accountService.isLoggedIn(); else loggedOut"
+    class="content-list"
+  >
+    <div *ngIf="books !== null && books.length > 0; else emptyList">
+      <h6 class="display-4">Your books in wishlist</h6>
+      <div
+        *ngFor="let book of books"
+        class="
+          d-flex
+          flex-row
+          justify-content-between
+          align-items-center
+          p-2
+          bg-white
+          mt-4
+          px-3
+          rounded
+        "
+      >
+        <div class="mr-1">
+          <img
+            src="https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg"
+            alt="book-image"
+            height="220px"
+            style="object-fit: scale-down"
+            [routerLink]="['/books', book.BookId]"
+          />
+        </div>
+
+        <div class="d-flex flex-column align-items-center product-details">
+          <span class="font-weight-bold book-title">{{ book.Title }}</span>
+          <div class="d-flex flex-row product-desc">
+            <div class="size mr-1">
+              <span class="text-grey">{{ book.Author }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="remove-book d-flex align-items-center"
+          (click)="removeBook(book.BookId)"
+        >
+          <i class="fa fa-trash mb-1 text-danger"></i>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyList>
+      <div class="container-fluid mt-100">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-body">
+              <div class="col-sm-12 empty-list text-center">
+                <img
+                  src="https://icon-library.com/images/icon_add_wish_list_1378430.png"
+                  width="130"
+                  height="130"
+                  class="img-fluid mb-4 mr-3"
+                />
+                <h3><strong>WishList is Empty</strong></h3>
+                <a
+                  href="#"
+                  class="btn btn-primary list-btn-transform m-3"
+                  data-abc="true"
+                  routerLinkActive="active"
+                  routerLink="/books"
+                  >Find Books</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+  <ng-template #loggedOut>
+    <div class="logged-out-text align-items-center">
+      <h2>You are logged out</h2>
+
+      <h5>Login to View your wishlist</h5>
+    </div>
+  </ng-template>
+</div>

@@ -1,28 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
 
+.jumbotron {
+  margin-top: 100px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  background-color: blanchedalmond;
+  background: url("/assets/images/wishlist_cover.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 85%;
+}
 
-.jumbotron{
-    margin-top: 100px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    background-color: blanchedalmond;
-    background: url('/assets/images/wishlist_cover.jpg')  ;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: 85%;
-    
+h1 {
+  padding-top: 50px;
+  color: #fff;
+  font-size: 5em;
 }
-h1{
-    padding-top: 50px;
-    color: #fff;
-    font-size: 5em;
+
+.jumbotron p {
+  color: #fff;
+  font-size: 2em;
 }
-.jumbotron p{
-    color:#fff;
-    font-size:2em;
+
+.remove-book,
+img {
+  cursor: pointer;
 }
-h6{
-    margin: 30px 0px;
-    font-size: 2em;
-   text-align: center   ;
+
+h6 {
+  margin: 30px 0px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.product-details,
+.logged-out-text {
+  font-family: "Manrope", sans-serif;
+}
+
+.content-list {
+  padding: 10% 0;
+}
+
+.empty-list {
+  padding-bottom: 20%;
+  padding-top: 10%;
+}
+
+.book-title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.logged-out-text {
+  text-align: center;
+  padding: 20% 0;
+}
+
+.logged-out-text h2 {
+  color: rebeccapurple;
+  font-weight: bolder;
+  margin-bottom: 2%;
 }

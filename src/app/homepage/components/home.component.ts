@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from 'src/app/models/book';
+import { AccountService } from 'src/app/services/account.service';
 import { BookService } from 'src/app/services/book.service';
 
 @Component({
@@ -11,13 +12,11 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   books!: Book[];
-  subscriber!: Subscription;
-  currentYear: number = new Date().getFullYear();
-
+  
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.subscriber = this.bookService
+    this.bookService
       .getAllBooks()
       .pipe(
         map((response) => response.filter((res) => res.Featured && res.Status))
@@ -32,7 +31,5 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
   }
 
-  ngOnDestroy() {
-    this.subscriber.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

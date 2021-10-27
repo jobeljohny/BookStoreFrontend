@@ -112,9 +112,13 @@
         </button>
       </ng-template>
 
-      <button type="button" class="btn btn-danger btn-md mr-1 mb-2">
+      <!-- <button
+        *ngIf="accountService.isLoggedIn()"
+        type="button"
+        class="btn btn-danger btn-md mr-1 mb-2"
+      >
         <i class="fa fa-heart"></i> Add to wishlist
-      </button>
+      </button> -->
       <div
         *ngIf="
           accountService.isLoggedIn() &&

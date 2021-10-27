@@ -12,12 +12,13 @@ import { BooksComponent } from './menus/books/books.component';
 import { SearchBarComponent } from './general/components/search-bar/search-bar.component';
 import { HomeComponent } from './homepage/components/home.component';
 import { HeroblockComponent } from './homepage/components/heroblock/heroblock.component';
-import { BookcardComponent } from './homepage/components/bookcard/bookcard.component';
+import { BookcardComponent } from './general/components/bookcard-list/bookcard/bookcard.component';
 import { CategoriesComponent } from './menus/categories/categories.component';
 import { BooksDetailsComponent } from './menus/books/books-details/books-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './general/components/cart/cart.component';
 import { WishlistComponent } from './menus/wishlist/wishlist.component';
+import { BookcardListComponent } from './general/components/bookcard-list/bookcard-list.component';
 
 
 @NgModule({
@@ -35,8 +36,8 @@ import { WishlistComponent } from './menus/wishlist/wishlist.component';
     CategoriesComponent,
     BooksDetailsComponent,
     CartComponent,
-    WishlistComponent
-  
+    WishlistComponent,
+    BookcardListComponent
   ],
   imports: [
     BrowserModule,

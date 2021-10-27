@@ -4,14 +4,15 @@
   <div class="part-1">
     <ng-content></ng-content>
     <ul>
-      <li>
-        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+      <li *ngIf="isLoggedIn" (click)="toggle()">
+        <a [ngClass]="isInWishList ? 'in-wish-list' : ''"
+          ><i class="fa fa-heart"></i
+        ></a>
       </li>
       <li>
-        <a href="#" ><i class="fa fa-heart"></i></a>
-      </li>
-      <li>
-        <a [routerLink]="['/books', book.BookId]"><i class="fa fa-expand"></i></a>
+        <a class="colorize" [routerLink]="['/books', book.BookId]"
+          ><i class="fa fa-expand"></i
+        ></a>
       </li>
     </ul>
   </div>
