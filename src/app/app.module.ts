@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginSignupComponent } from './auth/components/login-signup/login-signup.component';
@@ -20,14 +22,13 @@ import { CartComponent } from './general/components/cart/cart.component';
 import { WishlistComponent } from './menus/wishlist/wishlist.component';
 import { BookcardListComponent } from './general/components/bookcard-list/bookcard-list.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginSignupComponent,
     LoginContainerCardComponent,
     HeaderComponent,
-    FooterComponent,  
+    FooterComponent,
     BooksComponent,
     SearchBarComponent,
     HomeComponent,
@@ -37,7 +38,7 @@ import { BookcardListComponent } from './general/components/bookcard-list/bookca
     BooksDetailsComponent,
     CartComponent,
     WishlistComponent,
-    BookcardListComponent
+    BookcardListComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +46,12 @@ import { BookcardListComponent } from './general/components/bookcard-list/bookca
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

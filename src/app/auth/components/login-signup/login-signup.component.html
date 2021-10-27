@@ -27,6 +27,18 @@
           placeholder=""
           formControlName="name"
         />
+
+        <div
+          class="alert"
+          *ngIf="
+            (loginForm.controls['name'].dirty ||
+              loginForm.controls['name'].touched) &&
+            loginForm.controls['name'].errors?.required
+          "
+        >
+          Please enter a username
+        </div>
+
         <label for="password">Password</label>
         <input
           class="form-styling"
@@ -36,10 +48,24 @@
           formControlName="password"
         />
 
-        <label style="text-align: center"
-          ><span class="ui"></span>Click Sign In to continue</label
+        <div
+          class="alert"
+          *ngIf="
+            (loginForm.controls['password'].dirty ||
+              loginForm.controls['password'].touched) &&
+            loginForm.controls['password'].errors?.required
+          "
         >
-        <div style="text-align: center">
+          Password cannot be empty
+        </div>
+
+        <div
+          *ngIf="
+            loginForm.controls['name'].valid &&
+            loginForm.controls['password'].valid
+          "
+          style="text-align: center"
+        >
           <button type="submit" class="btn btn-primary">Sign in</button>
         </div>
       </form>
@@ -59,6 +85,18 @@
           placeholder=""
           formControlName="name"
         />
+
+        <div
+          class="alert"
+          *ngIf="
+            (registerForm.controls['name'].dirty ||
+              registerForm.controls['name'].touched) &&
+            registerForm.controls['name'].errors?.required
+          "
+        >
+          Please enter a username
+        </div>
+
         <label for="password">Password</label>
         <input
           class="form-styling"
@@ -68,6 +106,17 @@
           formControlName="password"
         />
 
+        <div
+          class="alert"
+          *ngIf="
+            (registerForm.controls['password'].dirty ||
+              registerForm.controls['password'].touched) &&
+            registerForm.controls['password'].errors?.required
+          "
+        >
+          Password cannot be empty
+        </div>
+
         <label for="address">Shipping Address</label>
         <input
           class="form-styling"
@@ -76,7 +125,13 @@
           placeholder=""
           formControlName="Address"
         />
-        <div style="text-align: center">
+        <div
+          *ngIf="
+            registerForm.controls['name'].valid &&
+            registerForm.controls['password'].valid
+          "
+          style="text-align: center"
+        >
           <button style="margin-top: 5%" type="submit" class="btn btn-primary">
             Sign up
           </button>
@@ -104,7 +159,7 @@
         </div>
       </div>
     </div>
-    <div class="forgot"><a href="#">Forgot your password?</a></div>
+    <div class="forgot"></div>
     <div>
       <div class="cover-photo"></div>
       <div class="profile-photo"></div>

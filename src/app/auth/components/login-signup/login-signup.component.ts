@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { WishListService } from 'src/app/services/wishlist.service';
 
 declare var $: any;
@@ -25,7 +26,8 @@ export class LoginSignupComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private wishListService: WishListService
+    private wishListService: WishListService,
+    private notifyService: NotificationService
   ) {
     if (this.accountService.isLoggedIn()) this.router.navigate(['/']);
   }
@@ -39,7 +41,10 @@ export class LoginSignupComponent implements OnInit {
         this.router.navigate(['/']);
       },
       (error) => {
-        alert(error.error.Message);
+        this.notifyService.showError(
+          error.error.Message,
+          'Error in Registration'
+        );
       }
     );
   }
@@ -51,7 +56,7 @@ export class LoginSignupComponent implements OnInit {
         this.router.navigate(['/']);
       },
       (error) => {
-        alert(error.error.Message);
+        this.notifyService.showError(error.error.Message, 'Error in Login');
       }
     );
   }

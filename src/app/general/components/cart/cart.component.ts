@@ -6,6 +6,7 @@ import { Coupon } from 'src/app/models/coupon';
 import { AccountService } from 'src/app/services/account.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CouponService } from 'src/app/services/coupon.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { BookOrder } from '../../../models/book-order';
 
 @Component({
@@ -34,7 +35,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     public accountService: AccountService,
     private couponService: CouponService,
-    private router: Router
+    private router: Router,
+    private notifyService: NotificationService
   ) {
     this.content = cartService.getContent();
 
@@ -64,7 +66,10 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/']);
       },
       (error) => {
-        alert(error.error.Message);
+        this.notifyService.showError(
+          error.error.Message,
+          'Error in making order'
+        );
       }
     );
   }
