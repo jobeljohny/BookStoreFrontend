@@ -2,7 +2,7 @@
 
 .jumbotron {
   margin-top: 100px;
-  height: 500px;
+  height: 300px;
   display: flex;
   align-items: center;
   background-color: blanchedalmond;
@@ -13,7 +13,7 @@
 }
 
 h1 {
-  padding-top: 50px;
+  padding-top: 20px;
   color: #fff;
   font-size: 5em;
 }
@@ -29,9 +29,24 @@ img {
 }
 
 h6 {
-  margin: 30px 0px;
+  margin: 0px 0px 30px 0px;
   font-size: 2em;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+}
+h6:before,
+h6:after {
+    content: '';
+    border-top: 2px solid;
+    margin: 0 30px 0 0;
+    flex: 1 0 20px;
+}
+
+h6:after {
+    margin: 0 0 0 30px;
 }
 
 .product-details,
@@ -40,7 +55,7 @@ h6 {
 }
 
 .content-list {
-  padding: 10% 0;
+  padding: 5% 0;
 }
 
 .empty-list {
