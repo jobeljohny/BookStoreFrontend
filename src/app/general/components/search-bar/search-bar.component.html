@@ -1,17 +1,20 @@
 <form [formGroup]="searchForm" (ngSubmit)="OnSubmit()" class="p-3">
-  <li class="nav-item">
+  <div style="text-align:center">
     <select
-      class="select-box border-0 mb-1 px-4 py-2 rounded shadow"
-      style="width: 180px"
+      class="select-box border-0 mb-1 px-4 py-2 rounded "
+      style="width: 180px;background: rgba(213, 113, 243, 0.349);"
       
       formControlName="field"
     >
-      <option value="title" selected>Name</option>
+      <option value="" disabled selected>choose</option>
+      <option value="title" >Name</option>
       <option value="category">Category</option>
       <option value="author">Authors</option>
       <option value="isbn">ISBN</option>
     </select>
-  </li>
+  </div>
+    
+  
   <div style="text-align: center">
     <input
       formControlName="data"

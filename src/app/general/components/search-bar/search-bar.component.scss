@@ -1,3 +1,5 @@
+
+
 #search-bar {
     height: 46px;
     border-radius: 48px;
@@ -21,3 +23,9 @@
     padding-left: 20px;
     background-color: rgb(184, 118, 204);
 }
+// select box
+*:focus
+{
+    outline: none;
+}
+
