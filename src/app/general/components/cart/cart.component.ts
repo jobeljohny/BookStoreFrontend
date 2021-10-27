@@ -62,6 +62,7 @@ export class CartComponent implements OnInit {
 
     this.cartService.makeOrder(data).subscribe(
       (response) => {
+        this.notifyService.showSuccess('Order placed', 'Success');
         this.cartService.emptyCart();
         this.router.navigate(['/']);
       },
