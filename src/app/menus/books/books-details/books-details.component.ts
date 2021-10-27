@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Book } from 'src/app/models/book';
+import { Cart } from 'src/app/models/cart';
 import { AccountService } from 'src/app/services/account.service';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-books-details',
@@ -13,13 +16,16 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class BooksDetailsComponent implements OnInit, OnDestroy {
   book: Book | null = null;
-
+  Qty = new FormControl(0);
+  isPushedToCart: boolean = false;
   subscriber!: Subscription;
 
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    public accountService: AccountService
+    public accountService: AccountService,
+    private cartService: CartService,
+    private router: Router
   ) {
     this.subscriber = this.route.params
       .pipe(
@@ -29,12 +35,58 @@ export class BooksDetailsComponent implements OnInit, OnDestroy {
       )
       .subscribe((res: Book) => {
         this.book = res;
+        let cart = cartService.getContent();
+        let idx = cart.BookList.findIndex((i) => i.BookId == this.book?.BookId);
+
+        if (idx !== -1) {
+          this.isPushedToCart = true;
+          this.Qty.setValue(cart.BookList[idx].Qty);
+        }
       });
+  }
+
+  addToCart() {
+    this.isPushedToCart = true;
+    if (this.Qty.value > 0) this.Qty.setValue(this.Qty.value);
+  }
+
+  removeFromCart() {
+    this.Qty.setValue(0);
+  }
+
+  addBook() {
+    this.Qty.setValue(this.Qty.value + 1);
+  }
+
+  removeBook() {
+    if (this.Qty.value > 0) this.Qty.setValue(this.Qty.value - 1);
+  }
+
+  buyNow() {
+    if (this.Qty.value === 0) this.Qty.setValue(1);
+
+    if (!this.isPushedToCart) this.addToCart();
+
+    this.router.navigate(['/cart']);
   }
 
   ngOnDestroy(): void {
     this.subscriber.unsubscribe();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.Qty.valueChanges.subscribe((value) => {
+      let id = this.book == null ? -1 : this.book.BookId;
+
+      if (id != -1 && this.isPushedToCart) {
+        // author, price and title will never be empty strings here, this is just for type specification
+        let author = this.book == null ? '' : this.book.Author;
+        let title = this.book == null ? '' : this.book.Title;
+        let price = this.book == null ? -1 : this.book.Price;
+        this.cartService.setBook(id, value, author, title, price);
+
+        if (value === 0) this.isPushedToCart = false;
+      }
+    });
+  }
 }

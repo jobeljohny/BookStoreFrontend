@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
+
+body {
+  font-family: "Manrope", sans-serif;
+  background: #eee;
+}
+
+.size span {
+  font-size: 11px;
+}
+
+.color span {
+  font-size: 11px;
+}
+
+.remove-book,
+img {
+  cursor: pointer;
+}
+
+.product-deta {
+  margin-right: 70px;
+}
+
+.gift-card:focus {
+  box-shadow: none;
+}
+
+.pay-button {
+  color: #fff;
+}
+
+.pay-button:hover {
+  color: #fff;
+}
+
+.qty {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+}
+
+.pay-button:focus {
+  color: #fff;
+  box-shadow: none;
+}
+
+.pay-button{
+    margin-left: 7px;
+}
+
+.empty-cart{
+  padding-bottom: 20%;
+  padding-top: 10%;
+}
+
+.text-grey {
+  color: #383838;
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+}
+
+.total-price {
+  color: #0054f1;
+  margin-left: 200px;
+  font-size: x-large;
+}
+
+.total-price-text {
+  text-align: right;
+  margin-right: 150px;
+  font-family: "Manrope", sans-serif;
+  font-weight: bolder;
+}
+
+.qty i {
+  font-size: 11px;
+}

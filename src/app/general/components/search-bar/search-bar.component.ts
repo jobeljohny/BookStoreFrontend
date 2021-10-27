@@ -23,21 +23,14 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     field: new FormControl('', [Validators.required]),
   });
 
-  allbooksSubscriber!: Subscription;
-
-  searchSubscriber!: Subscription;
-
   @Output() getBooks = new EventEmitter<Book[]>();
 
   constructor(private bookService: BookService) {}
 
-  ngOnDestroy(): void {
-    this.searchSubscriber.unsubscribe();
-    this.allbooksSubscriber.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    this.allbooksSubscriber = this.bookService
+    this.bookService
       .getAllBooks()
       .pipe(map((response) => response.filter((res) => res.Status)))
       .subscribe(
@@ -51,15 +44,13 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   OnSubmit() {
-    this.searchSubscriber = this.bookService
-      .getBooksByField(this.searchForm.value)
-      .subscribe(
-        (data: Book[]) => {
-          this.getBooks.emit(data);
-        },
-        (error) => {
-          alert(error.error.Message);
-        }
-      );
+    this.bookService.getBooksByField(this.searchForm.value).subscribe(
+      (data: Book[]) => {
+        this.getBooks.emit(data);
+      },
+      (error) => {
+        alert(error.error.Message);
+      }
+    );
   }
 }

@@ -1,0 +1,156 @@
+<section class="mt-5">
+  <div class="row p p-5">
+    <div *ngIf="content.BookList.length > 0; else emptyCart">
+      <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-center row">
+          <div class="col-md-8">
+            <div class="p-2">
+              <h4>YOUR CART</h4>
+            </div>
+            <div class="col-sm">
+              <h5 class="total-price-text">TOTAL</h5>
+            </div>
+            <section class="content-list">
+              <div
+                *ngFor="let book of content.BookList"
+                class="
+                  d-flex
+                  flex-row
+                  justify-content-between
+                  align-items-center
+                  p-2
+                  bg-white
+                  mt-4
+                  px-3
+                  rounded
+                "
+              >
+                <div class="mr-1">
+                  <img
+                    src="https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg"
+                    alt="book-image"
+                    height="220px"
+                    style="object-fit: scale-down"
+                    [routerLink]="['/books', book.BookId]"
+                  />
+                </div>
+
+                <div
+                  class="d-flex flex-column align-items-center product-details"
+                >
+                  <span class="font-weight-bold">{{ book.Title }}</span>
+                  <div class="d-flex flex-row product-desc">
+                    <div class="size mr-1">
+                      <span class="text-grey">{{ book.Author }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex flex-row align-items-center qty">
+                  <h5 class="text-grey mt-1 mr-1 ml-1">{{ book.Qty }}</h5>
+                </div>
+                <div>
+                  <h5 class="text-grey qty">₹{{ book.Price }}</h5>
+                </div>
+                <div
+                  class="remove-book d-flex align-items-center"
+                  (click)="removeBook(book.BookId)"
+                >
+                  <i class="fa fa-trash mb-1 text-danger"></i>
+                </div>
+              </div>
+            </section>
+
+            <div
+              class="
+                d-flex
+                flex-row
+                align-items-center
+                mt-3
+                p-2
+                bg-white
+                rounded
+              "
+            >
+              <div class="container">
+                <div class="row">
+                  <input
+                    type="text"
+                    class="col-sm form-control border-2 gift-card"
+                    placeholder="APPLY COUPON CODE"
+                    [formControl]="couponCode"
+                  />
+
+                  <div class="col-sm">
+                    <h5 class="total-price qty">₹{{ Total }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="
+                d-flex
+                flex-row
+                align-items-center
+                mt-3
+                p-2
+                bg-white
+                rounded
+              "
+            >
+              <button
+                *ngIf="accountService.isLoggedIn(); else login"
+                class="btn btn-warning btn-block btn-lg ml-2 pay-button"
+                type="button"
+                (click)="order()"
+              >
+                Proceed to Pay
+              </button>
+              <ng-template #login>
+                <button
+                  class="btn btn-info btn-block btn-lg ml-2 pay-button"
+                  type="button"
+                  routerLinkActive="active"
+                  routerLink="/login"
+                >
+                  Login to Order
+                </button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyCart>
+      <div>
+        <div class="container-fluid mt-100">
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <div class="card-body cart">
+                  <div class="col-sm-12 empty-cart text-center">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAN98d9BhWKtwNfa9MXOb3qitAKHn9QNKAQTHzC6d2rdcuHMdzcX-JlpjxNy9eyMv1j90&usqp=CAU"
+                      width="130"
+                      height="130"
+                      class="img-fluid mb-4 mr-3"
+                    />
+                    <h3><strong>Cart is Empty</strong></h3>
+                    <a
+                      href="#"
+                      class="btn btn-primary cart-btn-transform m-3"
+                      data-abc="true"
+                      routerLinkActive="active"
+                      routerLink="/books"
+                      >Find Books</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>

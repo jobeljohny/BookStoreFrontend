@@ -8,7 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public accountService: AccountService, private router: Router) {}
+  constructor(public accountService: AccountService) {}
 
   ngOnInit(): void {}
 
