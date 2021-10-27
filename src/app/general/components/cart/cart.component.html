@@ -72,6 +72,10 @@
               "
             >
               <div class="container">
+                <div *ngIf="Coupon != null" class="col-sm coupon-indicator">
+                  <p>Coupon Applied!</p>
+                </div>
+
                 <div class="row">
                   <input
                     type="text"
@@ -122,35 +126,33 @@
     </div>
 
     <ng-template #emptyCart>
-      
-        <div class="container-fluid mt-100">
-          <div class="row">
-            <div class="col-md-12">
-              <div>
-                <div class="card-body cart">
-                  <div class="col-sm-12 empty-cart text-center">
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAN98d9BhWKtwNfa9MXOb3qitAKHn9QNKAQTHzC6d2rdcuHMdzcX-JlpjxNy9eyMv1j90&usqp=CAU"
-                      width="130"
-                      height="130"
-                      class="img-fluid mb-4 mr-3"
-                    />
-                    <h3><strong>Cart is Empty</strong></h3>
-                    <a
-                      href="#"
-                      class="btn btn-primary cart-btn-transform m-3"
-                      data-abc="true"
-                      routerLinkActive="active"
-                      routerLink="/books"
-                      >Find Books</a
-                    >
-                  </div>
+      <div class="container-fluid mt-100">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <div class="card-body cart">
+                <div class="col-sm-12 empty-cart text-center">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAN98d9BhWKtwNfa9MXOb3qitAKHn9QNKAQTHzC6d2rdcuHMdzcX-JlpjxNy9eyMv1j90&usqp=CAU"
+                    width="130"
+                    height="130"
+                    class="img-fluid mb-4 mr-3"
+                  />
+                  <h3><strong>Cart is Empty</strong></h3>
+                  <a
+                    href="#"
+                    class="btn btn-primary cart-btn-transform m-3"
+                    data-abc="true"
+                    routerLinkActive="active"
+                    routerLink="/books"
+                    >Find Books</a
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
-      
+      </div>
     </ng-template>
   </div>
 </section>
