@@ -13,6 +13,7 @@ export class LoginSignupComponent implements OnInit {
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
+    Address: new FormControl(null, [Validators.required]),
   });
 
   loginForm = new FormGroup({

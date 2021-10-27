@@ -11,7 +11,14 @@
       </ul>
     </div>
     <div ng-app ng-init="checked = false">
-      <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-signin" action="" method="post" name="form">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+        class="form-signin"
+        action=""
+        method="post"
+        name="form"
+      >
         <label for="username">Username</label>
         <input
           class="form-styling"
@@ -32,12 +39,18 @@
         <label style="text-align: center"
           ><span class="ui"></span>Click Sign In to continue</label
         >
-        <div style="text-align: center;">
-          <button  type="submit" class="btn btn-primary">Sign in </button>
+        <div style="text-align: center">
+          <button type="submit" class="btn btn-primary">Sign in</button>
         </div>
-   
       </form>
-      <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-signup" action="" method="post" name="form">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="register()"
+        class="form-signup"
+        action=""
+        method="post"
+        name="form"
+      >
         <label for="fullname">User Name</label>
         <input
           class="form-styling"
@@ -54,8 +67,19 @@
           placeholder=""
           formControlName="password"
         />
-        <div style="text-align: center;">
-          <button style="margin-top: 5%;" type="submit" class="btn btn-primary">Sign up </button>
+
+        <label for="address">Shipping Address</label>
+        <input
+          class="form-styling"
+          type="text"
+          name="address"
+          placeholder=""
+          formControlName="Address"
+        />
+        <div style="text-align: center">
+          <button style="margin-top: 5%" type="submit" class="btn btn-primary">
+            Sign up
+          </button>
         </div>
       </form>
       <div class="success">
