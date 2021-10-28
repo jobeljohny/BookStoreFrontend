@@ -8,6 +8,7 @@ export interface Order {
     | {
         book: Book;
         qty: number;
+        itemPrice: number;
       }[]
     | null;
 }

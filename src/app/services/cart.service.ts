@@ -20,10 +20,7 @@ export class CartService {
       this.content = JSON.parse(localStorage.getItem('cart')!);
   }
 
-  setBook(
-    id: number,
-    qty: number,
-  ) {
+  setBook(id: number, qty: number, bookPrice: number) {
     let itemNumber: number = this.content?.BookList.findIndex(
       (i) => i.BookId == id
     ) as number;
@@ -33,10 +30,10 @@ export class CartService {
       this.content.BookList.push({
         BookId: id,
         Qty: qty,
+        ItemPrice: bookPrice,
       });
     } else {
       this.content.BookList[itemNumber].Qty = qty;
-      
     }
 
     if (this.content.BookList[itemNumber].Qty === 0)

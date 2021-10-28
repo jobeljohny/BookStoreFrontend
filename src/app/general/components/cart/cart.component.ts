@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { Cart } from 'src/app/models/cart';
 import { Coupon } from 'src/app/models/coupon';
@@ -28,8 +27,8 @@ export class CartComponent implements OnInit {
   private computeTotal() {
     this.Total = 0;
 
-    this.books.forEach((item) => {
-      this.Total += item.book.Price * item.qty;
+    this.content.BookList.forEach((item) => {
+      this.Total += item.ItemPrice * item.Qty;
     });
 
     if (this.Coupon != null) this.Total -= Math.max(this.Coupon.Discount, 0);
@@ -45,23 +44,13 @@ export class CartComponent implements OnInit {
   ) {
     this.content = cartService.getContent();
 
-    const observables: Observable<Book>[] = [];
+    this.content.BookList.forEach(item => {
+      this.bookService.getBookDetails(item.BookId.toString()).subscribe(response => {
+        this.books.push({ book: response, qty: item.Qty})
+      })
+    })
 
-    this.content.BookList.forEach((item) => {
-      observables.push(this.bookService.getBookDetails(item.BookId.toString()));
-    });
-
-    forkJoin(observables).subscribe((response) => {
-      let itemNumber = 0;
-      response.forEach((element) => {
-        this.books.push({
-          book: element,
-          qty: this.content.BookList[itemNumber].Qty,
-        });
-        itemNumber += 1;
-      });
-      this.computeTotal();
-    });
+     this.computeTotal();
   }
 
   removeFromCart(id: number) {
@@ -73,7 +62,7 @@ export class CartComponent implements OnInit {
   }
 
   removeBook(id: number) {
-    this.cartService.setBook(id, 0);
+    this.cartService.setBook(id, 0, -1);
     this.removeFromCart(id);
     this.computeTotal();
   }
@@ -87,7 +76,11 @@ export class CartComponent implements OnInit {
     };
 
     this.content.BookList.forEach((book) => {
-      data.BookList.push({ BookId: book.BookId, Qty: book.Qty });
+      data.BookList.push({
+        BookId: book.BookId,
+        Qty: book.Qty,
+        ItemPrice: book.ItemPrice,
+      });
     });
 
     this.cartService.makeOrder(data).subscribe(
