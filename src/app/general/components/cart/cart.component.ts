@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { forkJoin, Observable } from 'rxjs';
+import { Book } from 'src/app/models/book';
 import { Cart } from 'src/app/models/cart';
 import { Coupon } from 'src/app/models/coupon';
 import { AccountService } from 'src/app/services/account.service';
+import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CouponService } from 'src/app/services/coupon.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -17,6 +20,7 @@ import { BookOrder } from '../../../models/book-order';
 export class CartComponent implements OnInit {
   content: Cart;
   Coupon: Coupon | null = null;
+  books: { book: Book; qty: number }[] = [];
   Total: number = 0;
 
   couponCode = new FormControl('');
@@ -24,8 +28,8 @@ export class CartComponent implements OnInit {
   private computeTotal() {
     this.Total = 0;
 
-    this.content.BookList.forEach((book) => {
-      this.Total += book.Price;
+    this.books.forEach((item) => {
+      this.Total += item.book.Price * item.qty;
     });
 
     if (this.Coupon != null) this.Total -= Math.max(this.Coupon.Discount, 0);
@@ -36,15 +40,41 @@ export class CartComponent implements OnInit {
     public accountService: AccountService,
     private couponService: CouponService,
     private router: Router,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private bookService: BookService
   ) {
     this.content = cartService.getContent();
 
-    this.computeTotal();
+    const observables: Observable<Book>[] = [];
+
+    this.content.BookList.forEach((item) => {
+      observables.push(this.bookService.getBookDetails(item.BookId.toString()));
+    });
+
+    forkJoin(observables).subscribe((response) => {
+      let itemNumber = 0;
+      response.forEach((element) => {
+        this.books.push({
+          book: element,
+          qty: this.content.BookList[itemNumber].Qty,
+        });
+        itemNumber += 1;
+      });
+      this.computeTotal();
+    });
+  }
+
+  removeFromCart(id: number) {
+    let itemNumber: number = this.books.findIndex(
+      (item) => item.book.BookId == id
+    ) as number;
+
+    if (itemNumber !== -1) this.books.splice(itemNumber, 1);
   }
 
   removeBook(id: number) {
-    this.cartService.setBook(id, 0, '', '', -1);
+    this.cartService.setBook(id, 0);
+    this.removeFromCart(id);
     this.computeTotal();
   }
 

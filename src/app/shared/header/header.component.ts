@@ -20,5 +20,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
+    this.wishListService.getWishList()?.subscribe();
   }
 }

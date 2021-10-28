@@ -5,7 +5,7 @@ export interface Book {
   Year: number;
   Description: string;
   Status: boolean;
-  Image: Blob | null;
+  Image: string | null;
   Price: number;
   Position: number;
   Qty: number;

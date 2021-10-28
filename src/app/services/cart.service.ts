@@ -23,9 +23,6 @@ export class CartService {
   setBook(
     id: number,
     qty: number,
-    author: string,
-    title: string,
-    price: number
   ) {
     let itemNumber: number = this.content?.BookList.findIndex(
       (i) => i.BookId == id
@@ -36,13 +33,10 @@ export class CartService {
       this.content.BookList.push({
         BookId: id,
         Qty: qty,
-        Author: author,
-        Title: title,
-        Price: price * qty,
       });
     } else {
       this.content.BookList[itemNumber].Qty = qty;
-      this.content.BookList[itemNumber].Price = price * qty;
+      
     }
 
     if (this.content.BookList[itemNumber].Qty === 0)

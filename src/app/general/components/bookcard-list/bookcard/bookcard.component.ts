@@ -16,6 +16,26 @@ export class BookcardComponent implements OnInit {
     setWishListStatus: boolean;
   }>();
 
+  styleObject(isHover: boolean): Object {
+    let result = {
+      background: 'url(' + this.book.Image + ') no-repeat center',
+      'background-size': 'cover',
+      transition: 'all 0.3s',
+    };
+
+    if (isHover) {
+      return { transition : 'scale(1.2, 1.2)' };
+    }
+
+    return result;
+  }
+
+  hoverObject(): Object {
+    return {
+      transform: 'scale(1.2, 1.2)',
+    };
+  }
+
   constructor() {}
 
   ngOnInit(): void {}

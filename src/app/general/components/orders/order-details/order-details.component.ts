@@ -21,7 +21,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     private couponService: CouponService
   ) {
     this.orderDetails = this.orderService.getTempOrderDetails()!;
-    if (this.orderDetails == null) router.navigate(['/orders']);
+    if (this.orderDetails == null) this.router.navigate(['/orders']);
 
     this.orderDetails.BookList?.forEach((item) => {
       this.Total += item.book.Price * item.qty;

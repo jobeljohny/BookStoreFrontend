@@ -9,9 +9,20 @@ import { Order } from '../models/order';
 export class OrderService {
   baseurl: string = 'https://localhost:44393/api/';
 
+  base64DefaultString = '';
+  base64StringHeader = 'data:image/png;base64,';
+
   private tempOrderDetails: Order | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.http
+      .get('assets/text/default-image-base64.txt', {
+        responseType: 'text',
+      })
+      .subscribe((data) => {
+        this.base64DefaultString = data;
+      });
+  }
 
   getTempOrderDetails() {
     return this.tempOrderDetails;
@@ -34,6 +45,12 @@ export class OrderService {
       })
       .pipe(
         map((response) => {
+          response.BookList?.forEach((item) => {
+            if (item.book.Image == null)
+              item.book.Image =
+                this.base64StringHeader + this.base64DefaultString;
+            else item.book.Image = this.base64StringHeader + item.book.Image;
+          });
           this.tempOrderDetails = response;
           return response;
         })
