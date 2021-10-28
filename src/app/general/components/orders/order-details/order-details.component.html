@@ -1,0 +1,95 @@
+<section class="mt-5">
+  <div class="row p p-5">
+    <div>
+      <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-center row">
+          <div class="col-md-8">
+            <div class="p-2">
+              <h4>Order Details</h4>
+            </div>
+            <div class="col-sm">
+              <h5 class="total-price-text">TOTAL</h5>
+            </div>
+            <section class="content-list">
+              <div
+                *ngFor="let item of orderDetails.BookList"
+                class="
+                  d-flex
+                  flex-row
+                  justify-content-between
+                  align-items-center
+                  p-2
+                  bg-white
+                  mt-4
+                  px-3
+                  rounded
+                "
+              >
+                <div class="mr-1">
+                  <img
+                    src="https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg"
+                    alt="book-image"
+                    height="220px"
+                    style="object-fit: scale-down"
+                    [routerLink]="['/books', item.book.BookId]"
+                  />
+                </div>
+
+                <div
+                  class="d-flex flex-column align-items-center product-details"
+                >
+                  <span class="font-weight-bold">{{ item.book.Title }}</span>
+                  <div class="d-flex flex-row product-desc">
+                    <div class="size mr-1">
+                      <span class="text-grey">{{ item.book.Author }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex flex-row align-items-center qty">
+                  <h5 class="text-grey mt-1 mr-1 ml-1">{{ item.qty }}</h5>
+                </div>
+                <div>
+                  <h5 class="text-grey qty">₹{{ item.book.Price }}</h5>
+                </div>
+              </div>
+            </section>
+
+            <div
+              class="
+                d-flex
+                flex-row
+                align-items-center
+                mt-3
+                p-2
+                bg-white
+                rounded
+              "
+            >
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    <div
+                      *ngIf="orderDetails.CouponCode != 'null'; else noCoupon"
+                    >
+                      <p class="coupon-indicator">
+                        Coupon Used : {{ orderDetails.CouponCode }}
+                      </p>
+                    </div>
+
+                    <ng-template #noCoupon>
+                      <p>No Coupon Applied</p>
+                    </ng-template>
+                  </div>
+
+                  <div class="col-sm">
+                    <h5 class="total-price qty">₹{{ Total }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

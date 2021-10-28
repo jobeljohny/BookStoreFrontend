@@ -1,0 +1,59 @@
+<div class="container order-list">
+  <section>
+    <div *ngIf="orders != null && orders.length > 0; else emptyList">
+      <h6 class="display-5">Your Order History</h6>
+
+      <div class="row content index">
+        <div class="col-sm date-display">Order Date</div>
+        <div class="col-sm time-display">Order Time</div>
+      </div>
+
+      <div
+        class="content order bg-white mt-4 px-3 rounded"
+        *ngFor="let order of orders"
+      >
+        <div class="row" (click)="goToDetails(order.OrderId)">
+          <div class="col-sm date">
+            <div class="size mr-1">
+              {{ order.OrderDate | date }}
+            </div>
+          </div>
+
+          <div class="col-sm time remove-book align-items-center">
+            {{ order.OrderDate | date: "shortTime" }}
+          </div>
+        </div>
+
+        <hr />
+      </div>
+    </div>
+
+    <ng-template #emptyList>
+      <div class="container-fluid mt-100">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-body">
+              <div class="col-sm-12 empty-list text-center">
+                <img
+                  src="data:image/png;base64,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"
+                  width="130"
+                  height="130"
+                  class="img-fluid mb-4 mr-3"
+                />
+                <h3><strong>You haven't made any orders Yet</strong></h3>
+                <a
+                  href="#"
+                  class="btn btn-primary list-btn-transform m-3"
+                  data-abc="true"
+                  routerLinkActive="active"
+                  routerLink="/books"
+                  >Find Books</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+</div>
