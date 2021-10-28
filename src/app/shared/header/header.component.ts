@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { CartService } from 'src/app/services/cart.service';
 import { WishListService } from 'src/app/services/wishlist.service';
@@ -20,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
+    this.cartService.emptyCart();
     this.wishListService.getWishList()?.subscribe();
   }
 }

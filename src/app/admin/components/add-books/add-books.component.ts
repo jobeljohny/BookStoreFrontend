@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-books',
@@ -32,7 +33,8 @@ export class AddBooksComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private bookservice: BookService,
-    private router: Router
+    private router: Router,
+    private notifyService: NotificationService
   ) {
     this.categoryService.getAllCategoryIdsAndNames().subscribe((response) => {
       response.forEach((category) => {
@@ -87,9 +89,14 @@ export class AddBooksComponent implements OnInit {
       this.addBookForm.controls['Featured'].value === '1'
     );
 
-    this.bookservice.addBook(this.addBookForm.value).subscribe(response => {
-      this.router.navigate(['/books'])
-    });
+    this.bookservice.addBook(this.addBookForm.value).subscribe(
+      (response) => {
+        this.router.navigate(['/books']);
+      },
+      (error) => {
+        this.notifyService.showError(error.error.Message, 'Error');
+      }
+    );
   }
 
   ngOnInit(): void {
