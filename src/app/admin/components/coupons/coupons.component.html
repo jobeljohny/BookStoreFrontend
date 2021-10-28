@@ -1,0 +1,90 @@
+<div class="container border p-5">
+  <h3 class="text-center mb-5"><i class="fa fa-gift fs-3 text-warning"></i> Promo/Coupon Code Management </h3>
+  <div class="row">
+    <div class="col-12 col-md-6 p-3">
+      <div class="border p-3">
+        <h5 class="text-center my-3"><i class="fa fa-plus fs-3 text-Success"></i> Create New Promo/Coupon Code </h5>
+       
+        <form [formGroup]="addCounponForm" >
+          <div class="mb-3">
+            <label for="couponCode" class="form-label">Coupon Code</label>
+            <input type="text" class="form-control" id="couponCode"
+            [ngClass]="{'is-invalid':addCounponForm.get('couponCode')?.touched && addCounponForm.get('couponCode')?.invalid}"
+            formControlName ="couponCode">
+            <div class="invalid-feedback">
+              <div *ngIf="addCounponForm.get('couponCode')?.errors?.required">
+                Coupon Code is required
+              </div>
+              <div *ngIf="addCounponForm.get('couponCode')?.errors?.minlength">
+                Coupon Code should contain atleast 6 characters
+              </div>
+            </div>
+            
+
+          </div>
+          <div class="mb-3">
+            <label for="discountAmount" class="form-label">Discount Amount</label>
+            <input type="number" class="form-control" id="discountAmount"
+            [ngClass]="{'is-invalid':addCounponForm.get('discountAmount')?.touched && addCounponForm.get('discountAmount')?.invalid}"
+            formControlName ="discountAmount">
+            <div class="invalid-feedback">
+              <div>Discount Amount is required</div>
+            </div>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" [disabled]="addCounponForm.invalid" class="btn btn-success mb-3"><i class="fa fa-plus text-white"></i>Create
+              Coupon</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+    <div class="col-12 col-md-6 p-3">
+      <div class="border p-3">
+        <h5 class="text-center my-3"><i class="fa fa-pencil-square-o fs-3 text-info"></i> Promo/Coupon Codes </h5>
+
+        <table class="table table-hover">
+          <thead>
+            <tr class="table-success text-center">
+              <th scope="col">Coupon Id</th>
+              <th scope="col">Coupon Code</th>
+              <th scope="col">Discout Amount</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center">
+              <th scope="row">1</th>
+              <td>DIWALI500</td>
+              <td>$ 500</td>
+              <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel">
+                Delete
+              </button></td>
+            </tr>
+            
+        </table>
+
+      </div>
+     </div>
+    </div>
+  </div>
+
+  <!-- Model or alert before deleting -->
+  <!-- Button trigger modal -->
+<div class="modal fade" id="deleteModel" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content pt-3">
+      
+      <div class="modal-body text-center ">
+        <h4 class="text-center">Coupon Code : DIWALI500</h4>
+        <p>Are you sure, you want to delete this coupon?</p>
+        
+        <button type="button" class="btn btn-secondary mx-3" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger">Delete</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

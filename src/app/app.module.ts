@@ -24,6 +24,7 @@ import { BookcardListComponent } from './general/components/bookcard-list/bookca
 import { OrdersComponent } from './general/components/orders/orders.component';
 import { OrderDetailsComponent } from './general/components/orders/order-details/order-details.component';
 import { AddBooksComponent } from './admin/components/add-books/add-books.component';
+import { CouponsComponent } from './admin/components/coupons/coupons.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AddBooksComponent } from './admin/components/add-books/add-books.compon
     OrdersComponent,
     OrderDetailsComponent,
     AddBooksComponent,
+    CouponsComponent,
   ],
   imports: [
     BrowserModule,
