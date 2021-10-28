@@ -18,12 +18,10 @@ export class OrdersComponent implements OnInit {
     private router: Router,
     private orderService: OrderService
   ) {
-    if (!this.accountService.isLoggedIn()) this.router.navigate(['/']);
-
     this.orderService
       .getAllOrders(this.accountService.getCurrentUser().id)
       .subscribe((response) => {
-        this.orders = response;
+        this.orders = response.reverse();
       });
   }
 

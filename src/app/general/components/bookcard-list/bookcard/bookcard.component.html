@@ -1,7 +1,11 @@
 <!-- Single Product -->
 
 <div id="book-1" class="single-book">
-  <div class="part-1">
+  <div
+    [ngStyle]="styleObject(false)"
+    (mouseover)="styleObject(true)"
+    class="part-1"
+  >
     <ng-content></ng-content>
     <ul>
       <li *ngIf="isLoggedIn" (click)="toggle()">

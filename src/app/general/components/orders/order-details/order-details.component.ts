@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
@@ -21,10 +20,10 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     private couponService: CouponService
   ) {
     this.orderDetails = this.orderService.getTempOrderDetails()!;
-    if (this.orderDetails == null) router.navigate(['/orders']);
+    if (this.orderDetails == null) this.router.navigate(['/orders']);
 
     this.orderDetails.BookList?.forEach((item) => {
-      this.Total += item.book.Price * item.qty;
+      this.Total += item.itemPrice * item.qty;
     });
 
     if (this.orderDetails.CouponCode != 'null') {

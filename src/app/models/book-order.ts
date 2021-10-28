@@ -5,5 +5,6 @@ export interface BookOrder {
   BookList: {
     BookId: number;
     Qty: number;
+    ItemPrice: number;
   }[];
 }

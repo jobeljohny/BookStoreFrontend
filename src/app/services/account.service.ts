@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs';
 import { Account } from '../models/account';
 import { map } from 'rxjs/operators';
 import { parseJwtToken } from '../utilities/parseJwt';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class AccountService {
 
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private notifyService: NotificationService
+  ) {}
 
   getCurrentUser() {
     if (!this.isLoggedIn()) return null;
@@ -35,6 +39,7 @@ export class AccountService {
 
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
+          this.notifyService.showSuccess('Success in Login', 'Welcome');
           this.currentUserSource.next(user);
         }
       })
@@ -51,6 +56,7 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('user');
+    this.notifyService.showSuccess('Logged Out', '');
     this.currentUserSource.next();
   }
 
@@ -66,6 +72,7 @@ export class AccountService {
         };
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
+          this.notifyService.showSuccess('Success in Registration', 'Welcome!');
           this.currentUserSource.next(user);
         }
         return user;

@@ -4,7 +4,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Book } from 'src/app/models/book';
-import { Cart } from 'src/app/models/cart';
 import { AccountService } from 'src/app/services/account.service';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -85,12 +84,8 @@ export class BooksDetailsComponent implements OnInit, OnDestroy {
     this.Qty.valueChanges.subscribe((value) => {
       let id = this.book == null ? -1 : this.book.BookId;
 
-      if (id != -1 && this.isPushedToCart) {
-        // author, price and title will never be empty strings here, this is just for type specification
-        let author = this.book == null ? '' : this.book.Author;
-        let title = this.book == null ? '' : this.book.Title;
-        let price = this.book == null ? -1 : this.book.Price;
-        this.cartService.setBook(id, value, author, title, price);
+      if (id != -1 && this.isPushedToCart && this.book != null) {
+        this.cartService.setBook(id, value, this.book.Price);
 
         if (value === 0) this.isPushedToCart = false;
       }

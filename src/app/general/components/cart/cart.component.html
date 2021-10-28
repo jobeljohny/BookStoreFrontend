@@ -12,7 +12,7 @@
             </div>
             <section class="content-list">
               <div
-                *ngFor="let book of content.BookList"
+                *ngFor="let item of books"
                 class="
                   d-flex
                   flex-row
@@ -27,33 +27,35 @@
               >
                 <div class="mr-1">
                   <img
-                    src="https://i.pinimg.com/564x/58/ed/3e/58ed3e68bd5b5aa7cc86254b731e8d0c.jpg"
+                    src="{{ item.book.Image }}"
                     alt="book-image"
                     height="220px"
                     style="object-fit: scale-down"
-                    [routerLink]="['/books', book.BookId]"
+                    [routerLink]="['/books', item.book.BookId]"
                   />
                 </div>
 
                 <div
                   class="d-flex flex-column align-items-center product-details"
                 >
-                  <span class="font-weight-bold">{{ book.Title }}</span>
+                  <span class="font-weight-bold">{{ item.book.Title }}</span>
                   <div class="d-flex flex-row product-desc">
                     <div class="size mr-1">
-                      <span class="text-grey">{{ book.Author }}</span>
+                      <span class="text-grey">{{ item.book.Author }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="d-flex flex-row align-items-center qty">
-                  <h5 class="text-grey mt-1 mr-1 ml-1">{{ book.Qty }}</h5>
+                  <h5 class="text-grey mt-1 mr-1 ml-1">{{ item.qty }}</h5>
                 </div>
                 <div>
-                  <h5 class="text-grey qty">₹{{ book.Price }}</h5>
+                  <h5 class="text-grey qty">
+                    ₹{{ item.book.Price * item.qty }}
+                  </h5>
                 </div>
                 <div
                   class="remove-book d-flex align-items-center"
-                  (click)="removeBook(book.BookId)"
+                  (click)="removeBook(item.book.BookId)"
                 >
                   <i class="fa fa-trash mb-1 text-danger"></i>
                 </div>

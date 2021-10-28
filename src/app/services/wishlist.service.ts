@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { Book } from '../models/book';
 import { AccountService } from './account.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,22 @@ export class WishListService {
 
   bookSet = new Set();
 
+  base64DefaultString = '';
+  base64StringHeader = 'data:image/png;base64,';
+
   constructor(
     private http: HttpClient,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private notifyService: NotificationService
   ) {
+    this.http
+      .get('assets/text/default-image-base64.txt', {
+        responseType: 'text',
+      })
+      .subscribe((data) => {
+        this.base64DefaultString = data;
+      });
+
     if (this.accountService.isLoggedIn())
       this.getWishList()?.subscribe((response) => {});
   }
@@ -33,7 +46,12 @@ export class WishListService {
         })
         .pipe(
           map((response: Book[]) => {
-            response.forEach((book) => this.bookSet.add(book.BookId));
+            response.forEach((book) => {
+              if (book.Image == null)
+                book.Image = this.base64StringHeader + this.base64DefaultString;
+              else book.Image = this.base64StringHeader + book.Image;
+              this.bookSet.add(book.BookId);
+            });
             return response;
           })
         );
@@ -55,6 +73,7 @@ export class WishListService {
         .pipe(
           map((response) => {
             this.bookSet.add(bookId);
+            this.notifyService.showInfo('Book added to wishlist', '');
             return response;
           })
         );
@@ -72,6 +91,7 @@ export class WishListService {
         .pipe(
           map((response) => {
             this.bookSet.delete(bookId);
+            this.notifyService.showInfo('Book removed from wishlist', '');
             return response;
           })
         );
