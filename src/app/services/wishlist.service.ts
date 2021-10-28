@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { Book } from '../models/book';
 import { AccountService } from './account.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class WishListService {
 
   constructor(
     private http: HttpClient,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private notifyService: NotificationService
   ) {
     if (this.accountService.isLoggedIn())
       this.getWishList()?.subscribe((response) => {});
@@ -55,6 +57,7 @@ export class WishListService {
         .pipe(
           map((response) => {
             this.bookSet.add(bookId);
+            this.notifyService.showInfo('Book added to wishlist', '');
             return response;
           })
         );
@@ -72,6 +75,10 @@ export class WishListService {
         .pipe(
           map((response) => {
             this.bookSet.delete(bookId);
+            this.notifyService.showInfo(
+              'Book removed from wishlist',
+              ''
+            );
             return response;
           })
         );

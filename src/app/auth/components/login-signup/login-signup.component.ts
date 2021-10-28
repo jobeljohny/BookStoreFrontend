@@ -38,7 +38,6 @@ export class LoginSignupComponent implements OnInit {
     this.accountService.register(this.registerForm.value).subscribe(
       (response) => {
         this.notifyService.showSuccess('Success in Registration', 'Welcome!');
-        this.wishListService.getWishList();
         this.router.navigate(['/']);
       },
       (error) => {
@@ -54,8 +53,9 @@ export class LoginSignupComponent implements OnInit {
     this.accountService.login(this.loginForm.value).subscribe(
       (response) => {
         this.notifyService.showSuccess('Success in Login', 'Welcome');
-        this.wishListService.getWishList();
-        this.router.navigate(['/']);
+        this.wishListService.getWishList()?.subscribe((response) => {
+          this.router.navigate(['/']);
+        });
       },
       (error) => {
         this.notifyService.showError(error.error.Message, 'Error in Login');

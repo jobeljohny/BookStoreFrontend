@@ -17,6 +17,23 @@
 
     <div class="order-lg-2 nav-btns">
       <button
+        *ngIf="
+          accountService.isLoggedIn() &&
+          accountService.getCurrentUser()?.role === 'Admin'
+        "
+        routerLinkActive="active"
+        routerLink="/add-book"
+        type="button"
+        class="btn position-relative"
+      >
+        <img
+          src="https://img.icons8.com/fluency-systems-filled/24/000000/add-book.png"
+          width="80%"
+          height="80%"
+        />
+      </button>
+
+      <button
         routerLinkActive="active"
         routerLink="/cart"
         type="button"
