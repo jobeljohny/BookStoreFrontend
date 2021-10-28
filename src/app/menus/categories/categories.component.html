@@ -10,7 +10,7 @@
               <h2 class="shadowed">Categories</h2>    
               <div class="menubody">
                 <ul>
-                    <li *ngFor='let item of categories'><a href="#" data-text={{item}}>{{item}}</a><hr></li>
+                    <li *ngFor='let item of categories'><a [routerLink]="" (click)="onClick(item)" data-text={{item}}>{{item}}</a><hr></li>
                 
                   </ul>
                   
@@ -19,12 +19,8 @@
             </div>
         </div>
         <div class="col py-3">
-            Content area...
-            <!-- <div class="menubody">
-                <ul>
-                    <li *ngFor='let item of categories'><a href="#" data-text="item">{{item}}</a></li>
-                  </ul> 
-              </div> -->
+            <!-- Content area... -->
+            <app-bookcard-list [bookList]="books"> </app-bookcard-list>
            
             
         </div>
