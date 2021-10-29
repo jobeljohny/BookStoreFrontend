@@ -14,6 +14,7 @@ import { BooksComponent } from './menus/books/books.component';
 import { CategoriesComponent } from './menus/categories/categories.component';
 import { WishlistComponent } from './menus/wishlist/wishlist.component';
 import { CouponsComponent } from './admin/components/coupons/coupons.component';
+import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,11 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'orders', component: OrdersComponent, canActivate: [GuardService] },
+  {
+    path: 'orders/:id',
+    component: OrdersComponent,
+    canActivate: [AdminGuardService],
+  },
   { path: 'order-details', component: OrderDetailsComponent },
   { path: 'wishlist', component: WishlistComponent },
   {
@@ -37,6 +43,11 @@ const routes: Routes = [
   {
     path: 'add-coupon',
     component: CouponsComponent,
+    canActivate: [AdminGuardService],
+  },
+  {
+    path: 'view-users',
+    component: ViewUsersComponent,
     canActivate: [AdminGuardService],
   },
 ];

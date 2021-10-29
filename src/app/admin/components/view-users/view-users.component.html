@@ -1,0 +1,81 @@
+<div class="container user-list">
+  <section>
+    <div *ngIf="users.length > 0; else emptyList">
+      <h6 class="display-5">All the Users</h6>
+
+      <div class="row content index">
+        <div class="col-sm date-display">User Name</div>
+        <div class="col-sm time-display">Activation</div>
+        <div class="col-sm time-display">View Order History</div>
+      </div>
+
+      <div
+        class="content user bg-white mt-4 px-3 rounded"
+        *ngFor="let user of users"
+      >
+        <div class="row">
+          <div class="col-sm name">
+            <div class="size mr-2">
+              {{ user.Name }}
+            </div>
+          </div>
+
+          <div
+            (click)="toggleActivation(user)"
+            class="col-sm interact active-status align-items-center"
+            title="Toggle User Activation"
+          >
+            <img
+              *ngIf="user.IsActive; else deactivated"
+              src="https://img.icons8.com/material-sharp/30/000000/user.png"
+            />
+            <ng-template #deactivated
+              ><img
+                src="https://img.icons8.com/material-rounded/30/000000/user-lock.png"
+            /></ng-template>
+          </div>
+
+          <div
+            (click)="viewOrderHistory(user.Id)"
+            class="col-sm history interact align-items-center"
+            title="View User Order History"
+          >
+            <img
+              src="https://img.icons8.com/ios-glyphs/30/000000/order-history.png"
+            />
+          </div>
+        </div>
+
+        <hr />
+      </div>
+    </div>
+
+    <ng-template #emptyList>
+      <div class="container-fluid mt-100">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-body">
+              <div class="col-sm-12 empty-list text-center">
+                <img
+                  src="https://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/256/user-delete-icon.png"
+                  width="130"
+                  height="130"
+                  class="img-fluid mb-4 mr-3"
+                />
+                <h3><strong>There are no users available</strong></h3>
+                <a
+                  href="#"
+                  class="btn btn-primary list-btn-transform m-3"
+                  data-abc="true"
+                  routerLinkActive="active"
+                  routerLink="/login"
+                  >Register new User</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+</div>

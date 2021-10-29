@@ -26,6 +26,7 @@ import { OrderDetailsComponent } from './general/components/orders/order-details
 import { AddBooksComponent } from './admin/components/add-books/add-books.component';
 import { CouponsComponent } from './admin/components/coupons/coupons.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     OrderDetailsComponent,
     AddBooksComponent,
     CouponsComponent,
+    ViewUsersComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,21 @@
           accountService.getCurrentUser()?.role === 'Admin'
         "
         routerLinkActive="active"
+        routerLink="/view-users"
+        type="button"
+        class="btn position-relative"
+      >
+        <img src="https://img.icons8.com/ios-glyphs/33/000000/group.png" />
+      </button>
+    </div>
+
+    <div class="order-lg-2 nav-btns">
+      <button
+        *ngIf="
+          accountService.isLoggedIn() &&
+          accountService.getCurrentUser()?.role === 'Admin'
+        "
+        routerLinkActive="active"
         routerLink="/add-coupon"
         type="button"
         class="btn position-relative"
