@@ -1,7 +1,7 @@
 <div class="container order-list">
   <section>
     <div *ngIf="orders != null && orders.length > 0; else emptyList">
-      <h6 class="display-5">Your Order History</h6>
+      <h6 class="display-5">Order History</h6>
 
       <div class="row content index">
         <div class="col-sm date-display">Order Date</div>
@@ -40,7 +40,7 @@
                   height="130"
                   class="img-fluid mb-4 mr-3"
                 />
-                <h3><strong>You haven't made any orders Yet</strong></h3>
+                <h3><strong>No orders have yet been made</strong></h3>
                 <a
                   href="#"
                   class="btn btn-primary list-btn-transform m-3"

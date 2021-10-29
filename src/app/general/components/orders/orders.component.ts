@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from 'src/app/models/book';
 import { Order } from 'src/app/models/order';
 import { AccountService } from 'src/app/services/account.service';
@@ -16,13 +16,20 @@ export class OrdersComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private router: Router,
+    private activeRoute: ActivatedRoute,
     private orderService: OrderService
   ) {
-    this.orderService
-      .getAllOrders(this.accountService.getCurrentUser().id)
-      .subscribe((response) => {
-        this.orders = response.reverse();
-      });
+    this.activeRoute.paramMap.subscribe((params: Params) => {
+      this.orderService
+        .getAllOrders(
+          params.get('id')
+            ? params.get('id')
+            : this.accountService.getCurrentUser().id
+        )
+        .subscribe((response) => {
+          this.orders = response.reverse();
+        });
+    });
   }
 
   goToDetails(orderId: number) {
