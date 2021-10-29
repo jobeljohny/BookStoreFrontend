@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Book } from '../models/book';
 import { NotificationService } from './notification.service';
 
@@ -27,16 +27,25 @@ export class BookService {
   }
 
   getAllBooks() {
-    return this.http.get<Book[]>(this.baseurl + 'books/').pipe(
-      map((response) => {
-        response.forEach((book) => {
-          if (book.Image == null)
-            book.Image = this.base64StringHeader + this.base64DefaultString;
-          else book.Image = this.base64StringHeader + book.Image;
-        });
-        return response;
-      })
-    );
+    return this.http
+      .get<Book[]>(this.baseurl + 'books/')
+      .pipe(
+        map((response) => {
+          response.forEach((book) => {
+            if (book.Image == null)
+              book.Image = this.base64StringHeader + this.base64DefaultString;
+            else book.Image = this.base64StringHeader + book.Image;
+          });
+          return response;
+        })
+      )
+      .pipe(
+        tap((data: Book[]) => {}),
+        catchError((err) => {
+          this.notifyService.showError(err.error.Message, 'Error');
+          throw err;
+        })
+      );
   }
 
   getBooksByField(model: { field: string; data: string }) {

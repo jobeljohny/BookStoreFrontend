@@ -12,7 +12,7 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   books!: Book[];
-  
+
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
@@ -25,9 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         (data: Book[]) => {
           this.books = data;
         },
-        (error) => {
-          alert(error.error.Message);
-        }
+        (error) => {}
       );
   }
 

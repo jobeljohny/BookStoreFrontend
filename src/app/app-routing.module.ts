@@ -13,6 +13,7 @@ import { BooksDetailsComponent } from './menus/books/books-details/books-details
 import { BooksComponent } from './menus/books/books.component';
 import { CategoriesComponent } from './menus/categories/categories.component';
 import { WishlistComponent } from './menus/wishlist/wishlist.component';
+import { CouponsComponent } from './admin/components/coupons/coupons.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,10 +26,19 @@ const routes: Routes = [
   { path: 'books/:id', component: BooksDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'categories', component: CategoriesComponent },
-  { path: 'orders', component: OrdersComponent, canActivate:[GuardService] },
+  { path: 'orders', component: OrdersComponent, canActivate: [GuardService] },
   { path: 'order-details', component: OrderDetailsComponent },
   { path: 'wishlist', component: WishlistComponent },
-  { path: 'add-book', component: AddBooksComponent, canActivate:[AdminGuardService] },
+  {
+    path: 'add-book',
+    component: AddBooksComponent,
+    canActivate: [AdminGuardService],
+  },
+  {
+    path: 'add-coupon',
+    component: CouponsComponent,
+    canActivate: [AdminGuardService],
+  },
 ];
 
 @NgModule({

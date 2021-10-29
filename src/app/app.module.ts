@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,6 +25,7 @@ import { OrdersComponent } from './general/components/orders/orders.component';
 import { OrderDetailsComponent } from './general/components/orders/order-details/order-details.component';
 import { AddBooksComponent } from './admin/components/add-books/add-books.component';
 import { CouponsComponent } from './admin/components/coupons/coupons.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,9 @@ import { CouponsComponent } from './admin/components/coupons/coupons.component';
       positionClass: 'toast-top-right',
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

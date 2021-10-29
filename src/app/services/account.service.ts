@@ -14,12 +14,16 @@ export class AccountService {
 
   private currentUserSource = new ReplaySubject<Account>(1);
 
+  public token = '';
+
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(
     private http: HttpClient,
     private notifyService: NotificationService
-  ) {}
+  ) {
+    if (this.isLoggedIn()) this.token = this.getCurrentUser().token;
+  }
 
   getCurrentUser() {
     if (!this.isLoggedIn()) return null;
@@ -39,6 +43,7 @@ export class AccountService {
 
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
+          this.token = user.token;
           this.notifyService.showSuccess('Success in Login', 'Welcome');
           this.currentUserSource.next(user);
         }
@@ -56,6 +61,7 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('user');
+    this.token = '';
     this.notifyService.showSuccess('Logged Out', '');
     this.currentUserSource.next();
   }
@@ -72,6 +78,7 @@ export class AccountService {
         };
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
+          this.token = user.token;
           this.notifyService.showSuccess('Success in Registration', 'Welcome!');
           this.currentUserSource.next(user);
         }
