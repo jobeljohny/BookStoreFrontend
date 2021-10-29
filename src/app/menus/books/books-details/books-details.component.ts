@@ -75,6 +75,20 @@ export class BooksDetailsComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/cart']);
   }
+  editBook(){
+
+  }
+  deleteBook(){
+    if(this.book!=null){
+    this.bookService
+        .deleteBook(this.book.BookId.toString())
+        .subscribe((res) => {
+          
+          console.log('deleted'+res);
+          this.router.navigate(['/books'])
+        });
+      }
+  }
 
   ngOnDestroy(): void {
     this.subscriber.unsubscribe();

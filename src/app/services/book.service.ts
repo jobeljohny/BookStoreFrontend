@@ -84,4 +84,18 @@ export class BookService {
       })
     );
   }
+  editBook(model:Book){
+    return this.http.put<Book>(this.baseurl + 'books/'+model.BookId, model).pipe(
+      map((response) => {
+        this.notifyService.showSuccess('Book Updated', 'Success');
+      })
+    );
+  }
+  deleteBook(id: string) {
+    return this.http.delete<Book>(this.baseurl + 'books/' + id).pipe(
+      map((response) => {
+        this.notifyService.showSuccess('Book Deleted', 'Success');
+      })
+    );
+  }
 }
