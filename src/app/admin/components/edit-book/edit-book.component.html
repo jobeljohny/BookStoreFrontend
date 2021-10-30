@@ -1,8 +1,8 @@
 <section class="add-new-book-content">
   <div class="container">
-    <form [formGroup]="addBookForm" (ngSubmit)="OnSubmit()">
+    <form [formGroup]="editBookForm" (ngSubmit)="OnSubmit()">
       <div class="row fw-bold">
-        <h3 class="text-center m-3">New Books Entry</h3>
+        <h3 class="text-center m-3">Edit Book</h3>
         <div class="col-12 col-md-6">
           <div class="form-group mb-3">
             <label for="Title">Book Title</label>
@@ -13,8 +13,8 @@
               formControlName="Title"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Title')?.touched &&
-                  addBookForm.get('Title')?.invalid
+                  editBookForm.get('Title')?.touched &&
+                  editBookForm.get('Title')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -30,8 +30,8 @@
               formControlName="Author"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Author')?.touched &&
-                  addBookForm.get('Author')?.invalid
+                  editBookForm.get('Author')?.touched &&
+                  editBookForm.get('Author')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -47,8 +47,8 @@
               formControlName="ISBN"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('ISBN')?.touched &&
-                  addBookForm.get('ISBN')?.invalid
+                  editBookForm.get('ISBN')?.touched &&
+                  editBookForm.get('ISBN')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -66,8 +66,8 @@
               formControlName="Year"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Year')?.touched &&
-                  addBookForm.get('Year')?.invalid
+                  editBookForm.get('Year')?.touched &&
+                  editBookForm.get('Year')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -83,8 +83,8 @@
               formControlName="Position"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Position')?.touched &&
-                  addBookForm.get('Position')?.invalid
+                  editBookForm.get('Position')?.touched &&
+                  editBookForm.get('Position')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -99,16 +99,17 @@
               formControlName="CategoryId"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('CategoryId')?.touched &&
-                  addBookForm.get('CategoryId')?.invalid
+                  editBookForm.get('CategoryId')?.touched &&
+                  editBookForm.get('CategoryId')?.invalid
               }"
             >
-              <option value="" disabled selected>choose a Category</option>
-
               <option
                 *ngFor="let category of categories"
                 type="number"
                 value="{{ category.CategoryId }}"
+                [selected]="
+                  category.Name === editBookForm.controls['Category'].value
+                "
               >
                 {{ category.Name }}
               </option>
@@ -126,13 +127,22 @@
               formControlName="Status"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Status')?.touched &&
-                  addBookForm.get('Status')?.invalid
+                  editBookForm.get('Status')?.touched &&
+                  editBookForm.get('Status')?.invalid
               }"
             >
-              <option hidden></option>
-              <option value="1">Active</option>
-              <option value="0">Inactive</option>
+              <option
+                [selected]="editBookForm.controls['Status'].value === true"
+                value="1"
+              >
+                Active
+              </option>
+              <option
+                [selected]="editBookForm.controls['Status'].value  === false"
+                value="0"
+              >
+                Inactive
+              </option>
             </select>
             <div class="invalid-feedback">
               <div>Status of book is required</div>
@@ -147,8 +157,8 @@
               formControlName="Price"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Price')?.touched &&
-                  addBookForm.get('Price')?.invalid
+                  editBookForm.get('Price')?.touched &&
+                  editBookForm.get('Price')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -164,8 +174,8 @@
               formControlName="Qty"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Qty')?.touched &&
-                  addBookForm.get('Qty')?.invalid
+                  editBookForm.get('Qty')?.touched &&
+                  editBookForm.get('Qty')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -182,13 +192,22 @@
               formControlName="Featured"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Featured')?.touched &&
-                  addBookForm.get('Featured')?.invalid
+                  editBookForm.get('Featured')?.touched &&
+                  editBookForm.get('Featured')?.invalid
               }"
             >
-              <option hidden></option>
-              <option value="1">Yes, I want to feature this book</option>
-              <option value="0">No, I don't want to feature this book</option>
+              <option
+                [selected]="editBookForm.controls['Featured'].value === true"
+                value="1"
+              >
+                Yes, I want to feature this book
+              </option>
+              <option
+                [selected]="editBookForm.controls['Featured'].value === false"
+                value="0"
+              >
+                No, I don't want to feature this book
+              </option>
             </select>
             <div class="invalid-feedback">
               <div>This field is required</div>
@@ -203,8 +222,8 @@
               formControlName="Description"
               [ngClass]="{
                 'is-invalid':
-                  addBookForm.get('Description')?.touched &&
-                  addBookForm.get('Description')?.invalid
+                  editBookForm.get('Description')?.touched &&
+                  editBookForm.get('Description')?.invalid
               }"
             ></textarea>
             <div class="invalid-feedback">
@@ -220,7 +239,7 @@
               id="Image"
               (change)="onFileChange($event)"
               [ngClass]="{
-                'is-invalid': addBookForm.get('Image')?.invalid
+                'is-invalid': editBookForm.get('Image')?.invalid
               }"
             />
             <div class="invalid-feedback">
@@ -255,7 +274,7 @@
           class="btn btn-primary mt-5 px-5 py-2"
           style="display: block; margin: 0 auto"
           type="submit"
-          *ngIf="!addBookForm.invalid"
+          *ngIf="!editBookForm.invalid"
         >
           Submit
         </button>

@@ -15,6 +15,7 @@ import { CategoriesComponent } from './menus/categories/categories.component';
 import { WishlistComponent } from './menus/wishlist/wishlist.component';
 import { CouponsComponent } from './admin/components/coupons/coupons.component';
 import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
+import { EditBookComponent } from './admin/components/edit-book/edit-book.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'view-users',
     component: ViewUsersComponent,
+    canActivate: [AdminGuardService],
+  },
+  {
+    path: 'edit-book/:id',
+    component: EditBookComponent,
     canActivate: [AdminGuardService],
   },
 ];

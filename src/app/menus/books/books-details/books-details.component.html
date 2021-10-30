@@ -146,7 +146,8 @@
             <button
               type="button"
               class="btn btn-warning btn-md mx-1 mb-2 text-white"
-              (click)="editBook()"
+              routerLinkActive="active"
+              [routerLink]="['/edit-book', book?.BookId]"
             >
               Edit
             </button>

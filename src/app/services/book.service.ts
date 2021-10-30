@@ -32,7 +32,7 @@ export class BookService {
       .pipe(
         map((response) => {
           response.forEach((book) => {
-            if (book.Image == null)
+            if (book.Image == null || book.Image === '')
               book.Image = this.base64StringHeader + this.base64DefaultString;
             else book.Image = this.base64StringHeader + book.Image;
           });
@@ -57,7 +57,7 @@ export class BookService {
       .pipe(
         map((response) => {
           response.forEach((book) => {
-            if (book.Image == null)
+            if (book.Image == null || book.Image === '')
               book.Image = this.base64StringHeader + this.base64DefaultString;
             else book.Image = this.base64StringHeader + book.Image;
           });
@@ -69,7 +69,7 @@ export class BookService {
   getBookDetails(id: string) {
     return this.http.get<Book>(this.baseurl + 'books/' + id).pipe(
       map((book) => {
-        if (book.Image == null)
+        if (book.Image == null || book.Image === '')
           book.Image = this.base64StringHeader + this.base64DefaultString;
         else book.Image = this.base64StringHeader + book.Image;
         return book;
@@ -87,21 +87,32 @@ export class BookService {
 
   editBook(model: Book) {
     return this.http
-      .put<Book>(this.baseurl + 'books/' + model.BookId, model)
+      .put<Book>(this.baseurl + 'books/', model, {
+        params: new HttpParams().set('id', model.BookId),
+      })
       .pipe(
-        map((response) => {
-          this.notifyService.showSuccess('Book Updated', 'Success');
-        })
+        tap(
+          (response) => {
+            this.notifyService.showSuccess('Book Updated', '');
+          },
+          catchError((err) => {
+            this.notifyService.showError(
+              err.error.Message,
+              'Error in updating book'
+            );
+            throw err;
+          })
+        )
       );
   }
 
   deleteBook(id: string) {
     return this.http.delete<Book>(this.baseurl + 'books/' + id).pipe(
       tap((response) => {
-        this.notifyService.showSuccess('Book Deleted', 'Success');
+        this.notifyService.showSuccess('Book Deleted', '');
       }),
       catchError((err) => {
-        this.notifyService.showError(err.error.Message, 'Error');
+        this.notifyService.showError(err.error.Message, 'Error in deletion');
         throw err;
       })
     );

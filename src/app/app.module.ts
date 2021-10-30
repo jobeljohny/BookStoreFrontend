@@ -28,6 +28,7 @@ import { CouponsComponent } from './admin/components/coupons/coupons.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
 import { SafeHTMLPipe } from './pipes/safehtml.pipe';
+import { EditBookComponent } from './admin/components/edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SafeHTMLPipe } from './pipes/safehtml.pipe';
     CouponsComponent,
     ViewUsersComponent,
     SafeHTMLPipe,
+    EditBookComponent,
   ],
   imports: [
     BrowserModule,
