@@ -12,13 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ViewUsersComponent implements OnInit {
   users: User[] = [];
 
-  constructor(
-    private userService: UserService,
-    private orderService: OrderService,
-    private router: Router
-  ) {}
-
-  ngOnDestroy(): void {}
+  constructor(private userService: UserService, private router: Router) {}
 
   viewOrderHistory(id: number) {
     this.router.navigate(['/orders', id.toString()]);
