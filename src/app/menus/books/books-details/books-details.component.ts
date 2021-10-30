@@ -8,6 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
 import { WishListService } from 'src/app/services/wishlist.service';
+import { SafeHTMLPipe } from 'src/app/pipes/safehtml.pipe';
 
 @Component({
   selector: 'app-books-details',
@@ -75,19 +76,17 @@ export class BooksDetailsComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/cart']);
   }
-  editBook(){
 
-  }
-  deleteBook(){
-    if(this.book!=null){
-    this.bookService
+  editBook() {}
+
+  deleteBook() {
+    if (this.book != null) {
+      this.bookService
         .deleteBook(this.book.BookId.toString())
         .subscribe((res) => {
-          
-          console.log('deleted'+res);
-          this.router.navigate(['/books'])
+          this.router.navigate(['/books']);
         });
-      }
+    }
   }
 
   ngOnDestroy(): void {

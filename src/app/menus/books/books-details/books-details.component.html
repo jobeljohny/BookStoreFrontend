@@ -2,7 +2,8 @@
   <div class="row p p-5">
     <div class="col-md-6 mb-4 mb-md-0 px-5" id="bookDetailImage">
       <img
-        src="{{ book?.Image }}"
+        *ngIf="book != null"
+        [src]="book.Image | safeHTML"
         alt="book-image"
         width="100%"
         height="520px"
@@ -128,6 +129,7 @@
           accountService.isLoggedIn() &&
           accountService.getCurrentUser()?.role === 'Admin'
         "
+        style="padding: 3% 2%; margin-top: 5%"
         class="container border border-danger"
         id="panelAdmin"
       >
@@ -144,11 +146,15 @@
             <button
               type="button"
               class="btn btn-warning btn-md mx-1 mb-2 text-white"
-              (click)='editBook()'
+              (click)="editBook()"
             >
               Edit
             </button>
-            <button type="button" class="btn btn-danger btn-md mr-1 mb-2" (click)='deleteBook()'>
+            <button
+              type="button"
+              class="btn btn-danger btn-md mr-1 mb-2"
+              (click)="deleteBook()"
+            >
               Delete
             </button>
           </div>

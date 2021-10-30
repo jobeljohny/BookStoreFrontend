@@ -27,6 +27,7 @@ import { AddBooksComponent } from './admin/components/add-books/add-books.compon
 import { CouponsComponent } from './admin/components/coupons/coupons.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
+import { SafeHTMLPipe } from './pipes/safehtml.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ViewUsersComponent } from './admin/components/view-users/view-users.com
     AddBooksComponent,
     CouponsComponent,
     ViewUsersComponent,
+    SafeHTMLPipe,
   ],
   imports: [
     BrowserModule,
