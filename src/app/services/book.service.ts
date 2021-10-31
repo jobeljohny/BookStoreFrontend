@@ -94,7 +94,7 @@ export class BookService {
         tap(
           (response) => {
             this.notifyService.showSuccess('Book Updated', '');
-          },
+          }),
           catchError((err) => {
             this.notifyService.showError(
               err.error.Message,
@@ -102,7 +102,7 @@ export class BookService {
             );
             throw err;
           })
-        )
+        
       );
   }
 
