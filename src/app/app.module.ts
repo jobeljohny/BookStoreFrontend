@@ -29,6 +29,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
 import { SafeHTMLPipe } from './pipes/safehtml.pipe';
 import { EditBookComponent } from './admin/components/edit-book/edit-book.component';
+import { AboutUsComponent } from './menus/about-us/about-us.component';
+import { ContactUsComponent } from './menus/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { EditBookComponent } from './admin/components/edit-book/edit-book.compon
     ViewUsersComponent,
     SafeHTMLPipe,
     EditBookComponent,
+    AboutUsComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,

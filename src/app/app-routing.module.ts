@@ -16,6 +16,8 @@ import { WishlistComponent } from './menus/wishlist/wishlist.component';
 import { CouponsComponent } from './admin/components/coupons/coupons.component';
 import { ViewUsersComponent } from './admin/components/view-users/view-users.component';
 import { EditBookComponent } from './admin/components/edit-book/edit-book.component';
+import { AboutUsComponent } from './menus/about-us/about-us.component';
+import { ContactUsComponent } from './menus/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
   },
   { path: 'order-details', component: OrderDetailsComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'about', component: AboutUsComponent },
+  { path: 'contact', component: ContactUsComponent },
   {
     path: 'add-book',
     component: AddBooksComponent,
